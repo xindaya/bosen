@@ -11,6 +11,19 @@ namespace petuum {
 // ApplyBatchUpdate() have to be concurrent with each other and with other
 // functions that may be invoked by application threads.  Petuum system does
 // not require thread safety of other functions.
+
+//#
+// 这个类定义了Row 类型的接口，
+// applyUpdate()
+// applyBatchUpdate()
+// 必须可以并行的执行
+// petuum system 不对其他的线程有安全性的要求
+// #
+
+
+// #
+// noncopyable 不可复制，单例对象
+// #
 class AbstractRow : boost::noncopyable {
 public:
   virtual ~AbstractRow() { }
@@ -53,6 +66,9 @@ public:
   // Not necessarily thread-safe.
   // PS guarantees to not call this function concurrently with other functions
   // or itself.
+  // #
+  // 不是类型
+  // #
   virtual double ApplyIncUnsafeGetImportance(int32_t column_id,
                                              const void *update) = 0;
 
