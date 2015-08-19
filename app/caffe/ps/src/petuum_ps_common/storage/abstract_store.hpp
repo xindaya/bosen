@@ -8,6 +8,14 @@
 
 namespace petuum {
 
+//#
+//  翻译一下
+//  这里需要这个数据类型是数学性质的
+//
+// #
+
+
+
 // V is an arithmetic type. V is the data type and also the update type.
 // V needs to be a numeric type.
 template<typename V>
