@@ -3,7 +3,8 @@
 #include <petuum_ps_common/include/configs.hpp>
 
 // just provide the definitions for simplicity
-
+//#include到一个全局的通用的配置文件#
+//#然后对需要的内容做相应的补充#
 DEFINE_int32(table_staleness, 0, "table staleness");
 DEFINE_int32(row_type, 0, "table row type");
 DEFINE_int32(row_oplog_type, petuum::RowOpLogType::kDenseRowOpLog, "row oplog type");
