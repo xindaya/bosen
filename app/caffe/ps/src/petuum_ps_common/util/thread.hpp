@@ -1,7 +1,7 @@
 #pragma once
 
 #include <pthread.h>
-
+//#抽象类好像是#
 namespace petuum {
 class Thread {
 public:
