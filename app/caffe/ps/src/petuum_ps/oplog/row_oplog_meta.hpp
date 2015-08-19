@@ -3,7 +3,11 @@
 #include <stdint.h>
 
 namespace petuum {
-
+// #
+// 从这个名字来看是Row OP 操作的元信息
+// 1. clock
+// 2. importance
+// #
 class RowOpLogMeta {
 public:
   RowOpLogMeta():
