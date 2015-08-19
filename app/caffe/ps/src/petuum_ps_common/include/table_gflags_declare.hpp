@@ -4,6 +4,11 @@
 
 // just provide the definitions for simplicity
 
+
+
+//#声明配置需要的配置项#
+//#使用DECLARE来声明#
+
 DECLARE_int32(table_staleness);
 DECLARE_int32(row_type);
 DECLARE_int32(row_oplog_type);
