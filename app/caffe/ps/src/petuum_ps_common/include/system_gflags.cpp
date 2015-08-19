@@ -3,6 +3,9 @@
 
 #include <petuum_ps_common/include/configs.hpp>
 
+//#这种程序的写法不错#
+//#将所有需要的配置放到一个文件里#
+//#解耦#
 DEFINE_string(stats_path, "", "stats file path prefix");
 
 // Topology Configs
