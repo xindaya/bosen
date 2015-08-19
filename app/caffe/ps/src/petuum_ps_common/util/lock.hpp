@@ -29,6 +29,10 @@ namespace petuum {
 //
 // Code adapted from
 // http://boost.2283326.n4.nabble.com/boost-shared-mutex-performance-td2659061.html
+
+// # lockable类的具体实现
+//
+// #
 class SharedMutex : public Lockable {
 public:
   SharedMutex();
@@ -133,5 +137,4 @@ public:
 private:
   MUTEX* lock_;
 };
-
 }   // namespace petuum

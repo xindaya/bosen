@@ -3,7 +3,10 @@
 
 #pragma once
 
-
+//#
+// 这个类的作用相当于一个接口类，或者抽象类
+// 实现的是进程、线程之间的交互
+// #
 namespace petuum {
 
 // The Lockable concept (implemented as interface/abstract class) describes
