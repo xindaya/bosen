@@ -6,6 +6,10 @@
 #include <type_traits>
 #include <cstdint>
 
+//#这个is_pod是新的标准，不是很秦楚到底怎么用
+//cpp也是越来越复杂了
+// 不对
+// cpp本来就是复杂的#
 namespace petuum {
 
 // An Entry is an ID (int32_t) value (V) pair.
