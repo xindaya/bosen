@@ -17,6 +17,7 @@ namespace petuum {
 // <id> <ip> <port> (tab in as deliminator) 1 128.0.1.1 80
 //
 // Note that the first line of the file will be considered as name node.
+// #注意使用 tab 分割#
 void GetHostInfos(std::string server_file,
   std::map<int32_t, HostInfo> *host_map);
 
