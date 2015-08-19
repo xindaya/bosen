@@ -2,7 +2,7 @@
 
 #include <string>
 #include <glog/logging.h>
-
+// #HostInfo 这个结构体，就是讲localhost文件中的内容格式化，做了解析，便于分析#
 namespace petuum {
 
 struct HostInfo {
