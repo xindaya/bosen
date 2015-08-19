@@ -7,6 +7,11 @@
 
 #include <petuum_ps_common/storage/abstract_store.hpp>
 #include <petuum_ps_common/storage/abstract_store_iterator.hpp>
+
+// #
+// 属于类型是具体的float16的存储类型的工作
+// #
+
 namespace petuum {
 // V must be float.
 // When Init(), memory is zero-ed out.
