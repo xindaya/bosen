@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-
+//#用来集中管理thread#
 namespace petuum {
 
 template <typename ThreadType>
