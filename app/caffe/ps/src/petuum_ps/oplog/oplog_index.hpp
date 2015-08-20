@@ -10,6 +10,10 @@
 #include <petuum_ps_common/util/striped_lock.hpp>
 #include <petuum_ps/thread/context.hpp>
 
+// #
+// 1. 单例对象 从noncopyable看出来的
+// #
+
 namespace petuum {
 class PartitionOpLogIndex : boost::noncopyable {
 public:

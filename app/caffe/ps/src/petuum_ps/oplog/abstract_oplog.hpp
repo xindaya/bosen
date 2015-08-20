@@ -11,7 +11,10 @@
 #include <petuum_ps_common/include/abstract_row.hpp>
 #include <petuum_ps/oplog/row_oplog_meta.hpp>
 #include <petuum_ps/oplog/create_row_oplog.hpp>
-
+//#
+// abstract 就是定义的抽象的操作
+// 具体的实现应该在具体的不同类型的存储模型相对应
+// #
 namespace petuum {
 class OpLogAccessor {
 public:
