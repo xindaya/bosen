@@ -14,6 +14,10 @@ namespace petuum {
  * col_ids,
  * updates) tuples.
  */
+    // #
+    // 这是一个append-only buffer 类型，是为了BATCH_INC 操作做的专门的优化
+    // 这里把内存抽象为一个tuple，类型如上所述
+    // #
 
 class BatchIncAppendOnlyBuffer : public AbstractAppendOnlyBuffer {
 public:

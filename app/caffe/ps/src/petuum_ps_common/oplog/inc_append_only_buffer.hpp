@@ -11,7 +11,11 @@ namespace petuum {
  * operations. The buffer memory is organized as a list of (row_id, col_id,
  * update) tuples.
  */
-
+//# 这也是一个只做append的buffer
+// 不过和为批量操作不同的是，它不是为了批量优化，而是更新单个变量
+// 也是每个thread绑定的
+//
+// #
 class IncAppendOnlyBuffer : public AbstractAppendOnlyBuffer {
 public:
   IncAppendOnlyBuffer(int32_t thread_id, size_t capacity, size_t update_size):

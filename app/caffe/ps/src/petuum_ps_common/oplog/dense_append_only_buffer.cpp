@@ -3,6 +3,13 @@
 #include <glog/logging.h>
 
 namespace petuum {
+//#
+// 这个类并没有做异常处理，这个和java实现的代码是不一样的
+//
+// java代码在做IO操作的时候，都会用try catch来搞定
+//
+//
+// #
 
 bool DenseAppendOnlyBuffer::Inc(int32_t row_id, int32_t col_id,
                                 const void *delta) {

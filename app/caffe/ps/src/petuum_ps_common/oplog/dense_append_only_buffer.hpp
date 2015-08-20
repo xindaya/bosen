@@ -14,7 +14,11 @@ namespace petuum {
  * col_ids,
  * updates) tuples.
  */
-
+//#
+// 感觉这个类和batch_inc_append_only是一个样的啊
+// TODO
+// 这个是没有完成的类，估计在其他部分并没有使用
+// #
 class DenseAppendOnlyBuffer : public AbstractAppendOnlyBuffer {
 public:
   DenseAppendOnlyBuffer(int32_t thread_id, size_t capacity, size_t update_size,

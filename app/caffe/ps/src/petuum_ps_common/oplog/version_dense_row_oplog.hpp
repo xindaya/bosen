@@ -11,6 +11,10 @@
 #include <petuum_ps_common/oplog/abstract_row_oplog.hpp>
 #include <glog/logging.h>
 
+// 和原来的，没有加version的数据相比，我们的现在的版本，就是就是增加verison这个变量
+// 好神奇的变量
+// #
+
 namespace petuum {
 class VersionDenseRowOpLog : public virtual AbstractRowOpLog {
 public:
@@ -26,6 +30,9 @@ public:
       version_(0),
       end_of_version_(false) {
     CHECK(row_size > 0);
+    //#
+    // 上来什么不做，直接就重置
+    // #
     Reset();
   }
 
@@ -47,6 +54,15 @@ public:
     return Find(col_id);
   }
 
+//#
+// 上面的和其他的也没有什么区别，为何不直接继承一下呢
+//
+// 具体情况，需要用beyond_compare来分析一下吧
+//
+// version是用64位存的
+// cmu的同学，为什么要在这么底层的层次上做处理
+// #
+// #
   void SetVersion(uint64_t version) {
     version_ = version;
   }
@@ -55,6 +71,9 @@ public:
     end_of_version_ = end_of_version;
   }
 
+  //#
+  // 疯了，写的代码这么晦涩啊，太服了
+  // #
   uint64_t GetVersion(const uint8_t *bytes, size_t num_updates) const {
     return *(reinterpret_cast<const uint64_t*>(bytes + num_updates*update_size_));
   }

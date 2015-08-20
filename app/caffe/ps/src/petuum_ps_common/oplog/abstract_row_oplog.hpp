@@ -8,7 +8,15 @@
 #include <boost/noncopyable.hpp>
 
 namespace petuum {
-
+//#
+// 这里应该是用到了CPP的function新的特性
+// 1. InitUpdateFunc()
+// 2. CheckZeroUpdateFunc()#
+// #
+// ----
+//  从这个类的实现上看，这个类要做的事情，是将多行更新做存储一类的工作
+//
+// #
 typedef std::function<void(int32_t, void *)> InitUpdateFunc;
 typedef std::function<bool(const void*)> CheckZeroUpdateFunc;
 
@@ -20,10 +28,17 @@ public:
   virtual ~AbstractRowOpLog() { }
 
   // clean up the oplogs and allow the RowOpLog to be reused as a fresh one
+  //#
+  // 置零，重复利用
+  // #
   virtual void Reset() = 0;
 
   virtual bool NonEmpty() { return true; }
 
+// #
+//  find传入的参数是一个列号码，到底是什么作用呢
+//
+// #
   virtual void* Find(int32_t col_id) = 0;
 
   virtual const void* FindConst(int32_t col_id) const = 0;
@@ -43,7 +58,16 @@ public:
   virtual size_t GetSize() const = 0;
   virtual size_t ClearZerosAndGetNoneZeroSize() = 0;
 
+//#
+// 使用稀疏矩阵存储的模型
+// 就是中间没有零数据
+// #
+// #
   virtual size_t GetSparseSerializedSize() = 0;
+
+  //#
+  // 同样的道理获取的是稠密的存储模式
+  // #
   virtual size_t GetDenseSerializedSize() = 0;
 
   virtual size_t SerializeSparse(void *mem) = 0;
