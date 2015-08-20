@@ -5,6 +5,12 @@
 
 #include <queue>
 #include <mutex>
+// #
+// MT=multi-thread
+// 多线程
+// 这里说的线程安全的queue的本质上是一个
+// 加锁的queue
+// #
 
 namespace petuum {
 

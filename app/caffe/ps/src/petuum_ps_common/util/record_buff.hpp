@@ -38,6 +38,9 @@ public:
     offset_ = 0;
   }
 
+  //#
+  // 搞不明白的是为什么总是用这种别扭的方式来实现各种数据结构
+  // #
   bool Append(int32_t record_id, const void *record, size_t record_size) {
     if (offset_ + sizeof(int32_t) + record_size + sizeof(size_t) > mem_size_) {
       return false;
