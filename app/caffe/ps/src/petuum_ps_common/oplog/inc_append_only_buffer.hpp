@@ -11,9 +11,9 @@ namespace petuum {
  * operations. The buffer memory is organized as a list of (row_id, col_id,
  * update) tuples.
  */
-//# ÕâÒ²ÊÇÒ»¸öÖ»×öappendµÄbuffer
-// ²»¹ıºÍÎªÅúÁ¿²Ù×÷²»Í¬µÄÊÇ£¬Ëü²»ÊÇÎªÁËÅúÁ¿ÓÅ»¯£¬¶øÊÇ¸üĞÂµ¥¸ö±äÁ¿
-// Ò²ÊÇÃ¿¸öthread°ó¶¨µÄ
+//# è¿™ä¹Ÿæ˜¯ä¸€ä¸ªåªåšappendçš„buffer
+// ä¸è¿‡å’Œä¸ºæ‰¹é‡æ“ä½œä¸åŒçš„æ˜¯ï¼Œå®ƒä¸æ˜¯ä¸ºäº†æ‰¹é‡ä¼˜åŒ–ï¼Œè€Œæ˜¯æ›´æ–°å•ä¸ªå˜é‡
+// ä¹Ÿæ˜¯æ¯ä¸ªthreadç»‘å®šçš„
 //
 // #
 class IncAppendOnlyBuffer : public AbstractAppendOnlyBuffer {
