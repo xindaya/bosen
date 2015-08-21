@@ -12,6 +12,7 @@ namespace petuum {
 // #
 //  构造函数里面有thread_id 类型，我们可以认为，这个数据结构是为了thread构造的，
 //  用来优化thread的操作，避免同步数据同步造成阻塞
+//
 // #
 
 
