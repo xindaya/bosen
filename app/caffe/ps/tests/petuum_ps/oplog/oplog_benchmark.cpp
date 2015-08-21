@@ -6,17 +6,41 @@
 
 #include <petuum_ps_common/include/petuum_ps.hpp>
 #include <petuum_ps/oplog/append_only_oplog.hpp>
-
+//#
+// 这个设置的是稠密row类型的容量
+// #
 DEFINE_int32(dense_row_capacity, 1, "dense row capacity");
+//#
+// 这个配置项没有见过
+// #
 DEFINE_int32(partitioned_oplog_capacity, 10000, "partitioned oplog capacity");
+
+//#
+// 这个也没有见过
+// #
 DEFINE_int32(num_batch_incs, 1000, "number of batch incs");
 
 std::map<int32_t, petuum::HostInfo> host_map;
+//#
+// 这个比较抽象，还没有用到过
+// #
 petuum::DenseRow<int32_t> dense_row;
 petuum::TableOpLog *table_oplog;
 petuum::ThreadAppendOnlyOpLog  *thread_append_only_oplog;
+
+//#
+// 指针类型，列的list
+// #
 int32_t *col_ids;
+
+//#
+// 都是指针类型，更新类型
+// #
 int *updates;
+
+//#
+// 行的list
+// #
 int32_t *row_ids;
 
 int main (int argc, char *argv[]) {

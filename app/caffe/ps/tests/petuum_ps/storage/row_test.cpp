@@ -5,7 +5,9 @@
 #include <petuum_ps_common/storage/sorted_vector_map_row.hpp>
 
 using namespace petuum;
-
+//#
+// 只是测了下下？
+// #
 class RowTest : public ::testing::Test {
 protected:
   virtual void SetUp() {
