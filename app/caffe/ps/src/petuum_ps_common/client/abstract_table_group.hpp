@@ -16,7 +16,7 @@
 #include <petuum_ps_common/client/abstract_client_table.hpp>
 
 #include <boost/noncopyable.hpp>
-
+//从这个名字来看，是对table的管理
 namespace petuum {
 
 class AbstractTableGroup {
@@ -25,11 +25,15 @@ public:
 
   virtual ~AbstractTableGroup() { }
 
+// 创建表的时候，还要自己给表整个id?
+// 太不人性化了
+// #
   virtual bool CreateTable(int32_t table_id,
                            const ClientTableConfig& table_config) = 0;
 
   virtual void CreateTableDone() = 0;
 
+// table需要注册thread，真是奇怪了，到底怎么搞的？
   virtual void WaitThreadRegister() = 0;
 
   virtual AbstractClientTable *GetTableOrDie(int32_t table_id) = 0;
