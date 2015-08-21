@@ -16,7 +16,7 @@ virtual void SubtractUpdates(int32_t column_id, void *update1,
                      const void *update2) const {
   *(reinterpret_cast<V*>(update1)) -= *(reinterpret_cast<const V*>(update2));
 }
-
+//# 重要性只是算了一个比例
 // Get importance of this update as if it is allied on to the given value.
 virtual double GetImportance(int32_t column_id, const void *update,
                      const void *value) const {
