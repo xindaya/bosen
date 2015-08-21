@@ -2,6 +2,10 @@
 #include <string.h>
 
 namespace petuum {
+//#
+// batch_inc_append_only_buffer æ³¨é‡Š
+// è¿™ä¸ªæ–‡ä»¶ä¸»è¦æ˜¯ä¸ºäº†æ‰¹é‡batch æ›´æ–°è®¾è®¡çš„append only buffer
+// #
 
 bool BatchIncAppendOnlyBuffer::Inc(int32_t row_id, int32_t col_id, const void *delta) {
   if (size_ + sizeof(int32_t) + sizeof(int32_t) + update_size_
@@ -25,22 +29,22 @@ bool BatchIncAppendOnlyBuffer::Inc(int32_t row_id, int32_t col_id, const void *d
 
 bool BatchIncAppendOnlyBuffer::BatchInc(int32_t row_id, const int32_t *col_ids,
                                         const void *deltas, int32_t num_updates) {
-  //#Ê×ÏÈ×öÅĞ¶Ï£¬Èç¹û³¬³öÁËÈİÁ¿ÏŞÖÆ£¬ÄÇÃ´Êı¾İ¾ÍĞ´²»³É¹¦£¬Èç¹ûcallerÊ¹ÓÃµÄÊÇÎŞÏŞÖØÊÔ»úÖÆµÄ»°£¬ÄÇÃ´ÔÚÂß¼­ÉÏ
-  // ×èÈûĞ´ÈëÏß³Ì£¬Ö±µ½Ğ´Èë³É¹¦ÎªÖ¹
+  //#é¦–å…ˆåšåˆ¤æ–­ï¼Œå¦‚æœè¶…å‡ºäº†å®¹é‡é™åˆ¶ï¼Œé‚£ä¹ˆæ•°æ®å°±å†™ä¸æˆåŠŸï¼Œå¦‚æœcallerä½¿ç”¨çš„æ˜¯æ— é™é‡è¯•æœºåˆ¶çš„è¯ï¼Œé‚£ä¹ˆåœ¨é€»è¾‘ä¸Š
+  // é˜»å¡å†™å…¥çº¿ç¨‹ï¼Œç›´åˆ°å†™å…¥æˆåŠŸä¸ºæ­¢
   // #
   if (size_ + sizeof(int32_t) + sizeof(int32_t) +
       (sizeof(int32_t) + update_size_)*num_updates > capacity_)
     return false;
-//#Ğ´Èërow_id#
+//#å†™å…¥row_id#
   *(reinterpret_cast<int32_t*>(buff_.get() + size_)) = row_id;
   size_ += sizeof(int32_t);
-//#Ğ´Èë¸üĞÂµÄÊı¾İ¹æÄ£#
+//#å†™å…¥æ›´æ–°çš„æ•°æ®è§„æ¨¡#
   *(reinterpret_cast<int32_t*>(buff_.get() + size_)) = num_updates;
   size_ += sizeof(int32_t);
-//#ĞèÒª¸üĞÂµÄÁĞµÄidÈ«²¿#
+//#éœ€è¦æ›´æ–°çš„åˆ—çš„idå…¨éƒ¨#
   memcpy(buff_.get() + size_, col_ids, sizeof(int32_t)*num_updates);
   size_ += sizeof(int32_t)*num_updates;
-//#½«¸üĞÂµÄdeltaĞ´ÈëbufferÖĞ#
+//#å°†æ›´æ–°çš„deltaå†™å…¥bufferä¸­#
   memcpy(buff_.get() + size_, deltas, num_updates);
   size_ += update_size_*num_updates;
 
@@ -48,9 +52,9 @@ bool BatchIncAppendOnlyBuffer::BatchInc(int32_t row_id, const int32_t *col_ids,
 }
 
 //#
-// Õâ¸öÃ»ÓĞ¸ø¶¨¾ßÌåµÄÁĞµÄidÁĞ±í£¬¶øÊÇ´ÓÒ»¸öÆ«ÒÆÁ¿¿ªÊ¼£¬¸üĞÂ¶à¸öÊı¾İ
+// è¿™ä¸ªæ²¡æœ‰ç»™å®šå…·ä½“çš„åˆ—çš„idåˆ—è¡¨ï¼Œè€Œæ˜¯ä»ä¸€ä¸ªåç§»é‡å¼€å§‹ï¼Œæ›´æ–°å¤šä¸ªæ•°æ®
 //
-// ´Ó¾ßÌåµÄÊµÏÖÉÏÀ´¿´£¬Ò²ÊÇ½²Õâ¸ö¹ı³Ì×ª»¯Îª´«Í³µÄÉÏÃæµÄ¹¤×÷
+// ä»å…·ä½“çš„å®ç°ä¸Šæ¥çœ‹ï¼Œä¹Ÿæ˜¯è®²è¿™ä¸ªè¿‡ç¨‹è½¬åŒ–ä¸ºä¼ ç»Ÿçš„ä¸Šé¢çš„å·¥ä½œ
 // #
 
 bool BatchIncAppendOnlyBuffer::DenseBatchInc(int32_t row_id, const void *deltas,
@@ -65,12 +69,12 @@ bool BatchIncAppendOnlyBuffer::DenseBatchInc(int32_t row_id, const void *deltas,
 
   *(reinterpret_cast<int32_t*>(buff_.get() + size_)) = num_updates;
   size_ += sizeof(int32_t);
-//#¼ÇÂ¼id µÄlist#
+//#è®°å½•id çš„list#
   for (int32_t i = 0; i < num_updates; ++i) {
     *(reinterpret_cast<int32_t*>(buff_.get() + size_)) = index_st + i;
     size_ += sizeof(int32_t);
   }
-  //¿½±´¸üĞÂ²ÎÊı
+  //æ‹·è´æ›´æ–°å‚æ•°
   memcpy(buff_.get() + size_, deltas, num_updates);
   size_ += update_size_*num_updates;
 
@@ -82,18 +86,18 @@ void BatchIncAppendOnlyBuffer::InitRead() {
   read_ptr_ = buff_.get();
 }
 
-//#·µ»ØµÄÊÇÒ»¸övoidÀàĞÍµÄÖ¸Õë#
+//#è¿”å›çš„æ˜¯ä¸€ä¸ªvoidç±»å‹çš„æŒ‡é’ˆ#
 const void *BatchIncAppendOnlyBuffer::Next(
     int32_t *row_id, int32_t const **col_ids, int32_t *num_updates) {
   if (read_ptr_ >= buff_.get() + size_)
     return 0;
-    // #½âÎörow_id£¬È»ºóÖ¸ÕëºóÒÆÒ»Î»#
+    // #è§£ærow_idï¼Œç„¶åæŒ‡é’ˆåç§»ä¸€ä½#
   *row_id = *(reinterpret_cast<int32_t*>(read_ptr_));
   read_ptr_ += sizeof(int32_t);
-//#½âÎö¸üĞÂµÄdeltaÊıÄ¿£¬Ö¸ÕëºóÒÆÒ»Î»#
+//#è§£ææ›´æ–°çš„deltaæ•°ç›®ï¼ŒæŒ‡é’ˆåç§»ä¸€ä½#
   *num_updates = *(reinterpret_cast<int32_t*>(read_ptr_));
   read_ptr_ += sizeof(int32_t);
-//#½âÎöcol_ids£¬Ö¸ÕëºóÒÆÈô¸ÉÎ»#
+//#è§£æcol_idsï¼ŒæŒ‡é’ˆåç§»è‹¥å¹²ä½#
   *col_ids = reinterpret_cast<int32_t*>(read_ptr_);
   read_ptr_ += sizeof(int32_t)*(*num_updates);
 
