@@ -1,9 +1,11 @@
 #pragma once
 #include <stdint.h>
 #include <bitset>
-
+// record_buff.hpp 是将一个内存抽象为一个recordbuffer的数据结构
 #include <petuum_ps_common/util/record_buff.hpp>
+// 统计类
 #include <petuum_ps_common/util/stats.hpp>
+
 #include <petuum_ps/thread/context.hpp>
 #include <glog/logging.h>
 
