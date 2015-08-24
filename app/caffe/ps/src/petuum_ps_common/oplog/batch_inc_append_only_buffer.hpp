@@ -15,8 +15,8 @@ namespace petuum {
  * updates) tuples.
  */
     // #
-    // ÕâÊÇÒ»¸öappend-only buffer ÀàĞÍ£¬ÊÇÎªÁËBATCH_INC ²Ù×÷×öµÄ×¨ÃÅµÄÓÅ»¯
-    // ÕâÀï°ÑÄÚ´æ³éÏóÎªÒ»¸ötuple£¬ÀàĞÍÈçÉÏËùÊö
+    // è¿™æ˜¯ä¸€ä¸ªappend-only buffer ç±»å‹ï¼Œæ˜¯ä¸ºäº†BATCH_INC æ“ä½œåšçš„ä¸“é—¨çš„ä¼˜åŒ–
+    // è¿™é‡ŒæŠŠå†…å­˜æŠ½è±¡ä¸ºä¸€ä¸ªtupleï¼Œç±»å‹å¦‚ä¸Šæ‰€è¿°
     // #
 
 class BatchIncAppendOnlyBuffer : public AbstractAppendOnlyBuffer {

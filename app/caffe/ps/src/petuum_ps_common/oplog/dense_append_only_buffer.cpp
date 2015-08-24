@@ -4,9 +4,9 @@
 
 namespace petuum {
 //#
-// Õâ¸öÀà²¢Ã»ÓÐ×öÒì³£´¦Àí£¬Õâ¸öºÍjavaÊµÏÖµÄ´úÂëÊÇ²»Ò»ÑùµÄ
+// è¿™ä¸ªç±»å¹¶æ²¡æœ‰åšå¼‚å¸¸å¤„ç†ï¼Œè¿™ä¸ªå’Œjavaå®žçŽ°çš„ä»£ç æ˜¯ä¸ä¸€æ ·çš„
 //
-// java´úÂëÔÚ×öIO²Ù×÷µÄÊ±ºò£¬¶¼»áÓÃtry catchÀ´¸ã¶¨
+// javaä»£ç åœ¨åšIOæ“ä½œçš„æ—¶å€™ï¼Œéƒ½ä¼šç”¨try catchæ¥æžå®š
 //
 //
 // #

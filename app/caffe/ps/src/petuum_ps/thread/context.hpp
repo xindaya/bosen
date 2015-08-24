@@ -6,7 +6,10 @@
 #include <map>
 #include <glog/logging.h>
 #include <boost/utility.hpp>
-
+// context
+// 应该是配置中心
+// ##
+//host_info.hpp 就是 (client_id host port)tuple
 #include <petuum_ps_common/include/host_info.hpp>
 #include <petuum_ps_common/include/abstract_row.hpp>
 #include <petuum_ps_common/comm_bus/comm_bus.hpp>
@@ -70,9 +73,12 @@ class GlobalContext : boost::noncopyable {
 public:
   // Functions that do not depend on Init()
   static int32_t get_thread_id_min(int32_t client_id) {
+    // static 函数
+    // 用来分区不同的client id 的thread id
     return client_id*kMaxNumThreadsPerClient;
   }
 
+// 每个thread id都是都是一个区间范围
   static int32_t get_thread_id_max(int32_t client_id) {
     return (client_id + 1)*kMaxNumThreadsPerClient - 1;
   }
@@ -89,11 +95,13 @@ public:
     return (client_id_ == get_name_node_client_id());
   }
 
+// bg thread id 的计算方法
   static int32_t get_bg_thread_id(int32_t client_id, int32_t comm_channel_idx) {
     return get_thread_id_min(client_id) + kBgThreadIDStartOffset
         + comm_channel_idx;
   }
 
+// head thread id 的计算方法
   static int32_t get_head_bg_id(int32_t client_id) {
     return get_bg_thread_id(client_id, 0);
   }
@@ -207,8 +215,10 @@ public:
       int port_num = std::stoi(host_info.port, 0, 10);
 
       if (host_iter->first == get_name_node_id()) {
+        // 判断是否是namenode，如果是就启动
+        // 同时增加portnum
         name_node_host_info_ = host_info;
-
+        // 注意这里的端口号
         ++port_num;
         std::stringstream ss;
         ss << port_num;
@@ -216,9 +226,10 @@ public:
       }
 
       for (int i = 0; i < num_comm_channels_per_client_; ++i) {
+        // num_comm_channels_per_client_ L
         int32_t server_id = get_server_thread_id(host_iter->first, i);
         server_map_.insert(std::make_pair(server_id, host_info));
-
+        // 注意这里的端口号，用一次加一次，不同的端口是这么来的
         ++port_num;
         std::stringstream ss;
         ss << port_num;

@@ -13,16 +13,16 @@ namespace petuum {
 // not require thread safety of other functions.
 
 //#
-// Õâ¸öÀà¶¨ÒåÁËRow ÀàĞÍµÄ½Ó¿Ú£¬
+// è¿™ä¸ªç±»å®šä¹‰äº†Row ç±»å‹çš„æ¥å£ï¼Œ
 // applyUpdate()
 // applyBatchUpdate()
-// ±ØĞë¿ÉÒÔ²¢ĞĞµÄÖ´ĞĞ
-// petuum system ²»¶ÔÆäËûµÄÏß³ÌÓĞ°²È«ĞÔµÄÒªÇó
+// å¿…é¡»å¯ä»¥å¹¶è¡Œçš„æ‰§è¡Œ
+// petuum system ä¸å¯¹å…¶ä»–çš„çº¿ç¨‹æœ‰å®‰å…¨æ€§çš„è¦æ±‚
 // #
 
 
 // #
-// noncopyable ²»¿É¸´ÖÆ£¬µ¥Àı¶ÔÏó
+// noncopyable ä¸å¯å¤åˆ¶ï¼Œå•ä¾‹å¯¹è±¡
 // #
 class AbstractRow : boost::noncopyable {
 public:
@@ -67,7 +67,7 @@ public:
   // PS guarantees to not call this function concurrently with other functions
   // or itself.
   // #
-  // ²»ÊÇÀàĞÍ
+  // ä¸æ˜¯ç±»å‹
   // #
   virtual double ApplyIncUnsafeGetImportance(int32_t column_id,
                                              const void *update) = 0;

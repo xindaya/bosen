@@ -22,15 +22,25 @@ namespace petuum {
 //
 // ClientRow does not provide thread-safety in itself. The locks are
 // maintained in the storage and in (user-defined) ROW.
+    //#
+    // ClientRow is对用户定义的ROW类型的数据结构的封装
+    // 1. 引用计数
+    // 2. Row的元信息
+    // #
+    // clientROW 不是线程安全本身，安全需要storage和ROw自己保证
+    // #
 class ClientRow : boost::noncopyable {
 public:
-  // ClientRow takes ownership of row_data.
+// ClientRow takes ownership of row_属性 unused 用于函数和变量，表示该函数或变量可能不使用，这个属性可以避免
+// 编译器产生警告信息。
+
   ClientRow(int32_t clock __attribute__((unused)), AbstractRow* row_data,
             bool use_ref_count):
       num_refs_(0),
       row_data_ptr_(row_data)
   {
     if (use_ref_count) {
+      //绑定函数地址？
       IncRef_ = &ClientRow::DoIncRef;
       DecRef_ = &ClientRow::DoDecRef;
     } else {

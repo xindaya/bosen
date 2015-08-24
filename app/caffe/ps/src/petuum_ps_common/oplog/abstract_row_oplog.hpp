@@ -9,12 +9,12 @@
 
 namespace petuum {
 //#
-// ÕâÀïÓ¦¸ÃÊÇÓÃµ½ÁËCPPµÄfunctionĞÂµÄÌØĞÔ
+// è¿™é‡Œåº”è¯¥æ˜¯ç”¨åˆ°äº†CPPçš„functionæ–°çš„ç‰¹æ€§
 // 1. InitUpdateFunc()
 // 2. CheckZeroUpdateFunc()#
 // #
 // ----
-//  ´ÓÕâ¸öÀàµÄÊµÏÖÉÏ¿´£¬Õâ¸öÀàÒª×öµÄÊÂÇé£¬ÊÇ½«¶àĞĞ¸üĞÂ×ö´æ´¢Ò»ÀàµÄ¹¤×÷
+//  ä»è¿™ä¸ªç±»çš„å®ç°ä¸Šçœ‹ï¼Œè¿™ä¸ªç±»è¦åšçš„äº‹æƒ…ï¼Œæ˜¯å°†å¤šè¡Œæ›´æ–°åšå­˜å‚¨ä¸€ç±»çš„å·¥ä½œ
 //
 // #
 typedef std::function<void(int32_t, void *)> InitUpdateFunc;
@@ -29,14 +29,14 @@ public:
 
   // clean up the oplogs and allow the RowOpLog to be reused as a fresh one
   //#
-  // ÖÃÁã£¬ÖØ¸´ÀûÓÃ
+  // ç½®é›¶ï¼Œé‡å¤åˆ©ç”¨
   // #
   virtual void Reset() = 0;
 
   virtual bool NonEmpty() { return true; }
 
 // #
-//  find´«ÈëµÄ²ÎÊıÊÇÒ»¸öÁĞºÅÂë£¬µ½µ×ÊÇÊ²Ã´×÷ÓÃÄØ
+//  findä¼ å…¥çš„å‚æ•°æ˜¯ä¸€ä¸ªåˆ—å·ç ï¼Œåˆ°åº•æ˜¯ä»€ä¹ˆä½œç”¨å‘¢
 //
 // #
   virtual void* Find(int32_t col_id) = 0;
@@ -59,14 +59,14 @@ public:
   virtual size_t ClearZerosAndGetNoneZeroSize() = 0;
 
 //#
-// Ê¹ÓÃÏ¡Êè¾ØÕó´æ´¢µÄÄ£ĞÍ
-// ¾ÍÊÇÖĞ¼äÃ»ÓĞÁãÊı¾İ
+// ä½¿ç”¨ç¨€ç–çŸ©é˜µå­˜å‚¨çš„æ¨¡å‹
+// å°±æ˜¯ä¸­é—´æ²¡æœ‰é›¶æ•°æ®
 // #
 // #
   virtual size_t GetSparseSerializedSize() = 0;
 
   //#
-  // Í¬ÑùµÄµÀÀí»ñÈ¡µÄÊÇ³íÃÜµÄ´æ´¢Ä£Ê½
+  // åŒæ ·çš„é“ç†è·å–çš„æ˜¯ç¨ å¯†çš„å­˜å‚¨æ¨¡å¼
   // #
   virtual size_t GetDenseSerializedSize() = 0;
 

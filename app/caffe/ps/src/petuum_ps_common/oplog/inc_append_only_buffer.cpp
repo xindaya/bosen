@@ -1,12 +1,12 @@
 #include <petuum_ps_common/oplog/inc_append_only_buffer.hpp>
 #include <string.h>
 //#
-// ¾ßÌåÊµÏÖÁËinc append buffer
-// ÕâµÄ²Ù×÷²»ÊÇ¼ÆËã w= delta w+w
-// ¶øÊÇ½«ÕâĞ©Êı¾İ´æ´¢ÆğÀ´£¬Õâ¸öÈİÆ÷¾ÍÊÇappend_only_buffer#
+// å…·ä½“å®ç°äº†inc append buffer
+// è¿™çš„æ“ä½œä¸æ˜¯è®¡ç®— w= delta w+w
+// è€Œæ˜¯å°†è¿™äº›æ•°æ®å­˜å‚¨èµ·æ¥ï¼Œè¿™ä¸ªå®¹å™¨å°±æ˜¯append_only_buffer#
 namespace petuum {
 //#
-// ÅĞ¶ÏÈİÁ¿ÊÇ·ñ¹»
+// åˆ¤æ–­å®¹é‡æ˜¯å¦å¤Ÿ
 // #
 bool IncAppendOnlyBuffer::Inc(int32_t row_id, int32_t col_id, const void *delta) {
   if (size_ + sizeof(int32_t) + sizeof(int32_t) + update_size_
@@ -31,7 +31,7 @@ bool IncAppendOnlyBuffer::BatchInc(int32_t row_id, const int32_t *col_ids,
       > capacity_)
     return false;
 //#
-// Ô­À´Õâ¸öbufferµÄ½á¹¹¾ö¶¨ÁË£¬¾ÍËãÊÇbatchµÄ²Ù×÷£¬Ò²Òª×öÏàÓ¦µÄtuple½á¹¹À´´æ´¢
+// åŸæ¥è¿™ä¸ªbufferçš„ç»“æ„å†³å®šäº†ï¼Œå°±ç®—æ˜¯batchçš„æ“ä½œï¼Œä¹Ÿè¦åšç›¸åº”çš„tupleç»“æ„æ¥å­˜å‚¨
 // #
   for (int i = 0; i < num_updates; ++i) {
     *(reinterpret_cast<int32_t*>(buff_.get() + size_)) = row_id;

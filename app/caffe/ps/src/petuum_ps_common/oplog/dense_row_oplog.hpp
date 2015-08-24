@@ -14,17 +14,17 @@
 namespace petuum {
 class DenseRowOpLog : public virtual AbstractRowOpLog {
 public:
-  //#´«ÈëÁËÁ½¸öº¯Êı×÷Îª²Ù×÷
+  //#ä¼ å…¥äº†ä¸¤ä¸ªå‡½æ•°ä½œä¸ºæ“ä½œ
   // InitUpdate
   // CheckZeroUpdate
   // #
   //-----------
-  //#row_size_ÄÑµÀ±íÊ¾µÄÊÇÒ»ĞĞÖ®ÄÚ¶àÉÙÁĞ£¿
-  // Èç¹ûÊÇÕâÑù£¬ÄÇÃ´ÎÊÌâ½â¾öÁË£¬¶¼ºÃÀí½âÁË
-  // µ«ÊÇÎÒÃÇÓĞ±ØÒªÕâÃ´ÓÃÂğ£¿
+  //#row_size_éš¾é“è¡¨ç¤ºçš„æ˜¯ä¸€è¡Œä¹‹å†…å¤šå°‘åˆ—ï¼Ÿ
+  // å¦‚æœæ˜¯è¿™æ ·ï¼Œé‚£ä¹ˆé—®é¢˜è§£å†³äº†ï¼Œéƒ½å¥½ç†è§£äº†
+  // ä½†æ˜¯æˆ‘ä»¬æœ‰å¿…è¦è¿™ä¹ˆç”¨å—ï¼Ÿ
   //
   // ---
-  // update_size±íÊ¾µÄÊÇÒ»¸örow_id,col_id ×é³ÉµÄtuple¶¨ÒåµÄÒ»¸öcellµÄÊ¹ÓÃ×Ö½ÚµÄÊıÄ¿
+  // update_sizeè¡¨ç¤ºçš„æ˜¯ä¸€ä¸ªrow_id,col_id ç»„æˆçš„tupleå®šä¹‰çš„ä¸€ä¸ªcellçš„ä½¿ç”¨å­—èŠ‚çš„æ•°ç›®
   //
   // #
   DenseRowOpLog(InitUpdateFunc InitUpdate,
@@ -43,9 +43,9 @@ public:
   virtual ~DenseRowOpLog() { }
 
 //#
-// .get() »ñÈ¡µÄÊÇÖ¸ÕëµØÖ·
-// ÓÃcpp±à³Ì¹ûÈ»ÊÇÒ»¸öÄÑ¶ÈºÜ´óµÄ¹¤×÷
-// ²»¹ıÊÊÓ¦Ö®ºó¾ÍÃ»ÓĞÊ²Ã´ÄÑ¶ÈÁË°É
+// .get() è·å–çš„æ˜¯æŒ‡é’ˆåœ°å€
+// ç”¨cppç¼–ç¨‹æœç„¶æ˜¯ä¸€ä¸ªéš¾åº¦å¾ˆå¤§çš„å·¥ä½œ
+// ä¸è¿‡é€‚åº”ä¹‹åå°±æ²¡æœ‰ä»€ä¹ˆéš¾åº¦äº†å§
 // #
 // #
   //
@@ -54,7 +54,7 @@ public:
   }
 
 //#
-// ²»Àí½â×÷ÕßµÄÒâÍ¼
+// ä¸ç†è§£ä½œè€…çš„æ„å›¾
 // col_id vs row_size_
 //
 // #
@@ -77,10 +77,10 @@ public:
   }
 
 // #reinterpret_cast?
-// ËãÊÇÏÔÊ½µÄÀàĞÍ×ª»»°É#
+// ç®—æ˜¯æ˜¾å¼çš„ç±»å‹è½¬æ¢å§#
   void* Next(int32_t *column_id) {
     uint8_t *update = reinterpret_cast<uint8_t*>(Find(iter_col_id_));
-    // #Èç¹ûÊÇÁãµÄ»°£¬Òª´¦Àí
+    // #å¦‚æœæ˜¯é›¶çš„è¯ï¼Œè¦å¤„ç†
     //
     // #
     while (CheckZeroUpdate_(update) && iter_col_id_ < row_size_) {
@@ -140,7 +140,7 @@ public:
   }
 
 // #
-// ËãÊÇÑ¹Ëõ´æ´¢£¬½«Ô­À´²»ÓÃµÄÊı¾İÉ¾³ıµôÁË
+// ç®—æ˜¯å‹ç¼©å­˜å‚¨ï¼Œå°†åŸæ¥ä¸ç”¨çš„æ•°æ®åˆ é™¤æ‰äº†
 // #
   size_t SerializeSparse(void *mem) {
     int32_t col_id = 0;
@@ -185,17 +185,17 @@ public:
 
 protected:
   const size_t row_size_; // capacity
-  size_t num_nonzeros_; //·ÇÁãµÄÊı¾İĞĞÊı
+  size_t num_nonzeros_; //éé›¶çš„æ•°æ®è¡Œæ•°
 
   //----
   std::unique_ptr<uint8_t[]> oplogs_;
-  //ÎªÊ²Ã´ÓÃÕâ¸öÖÇÄÜÖ¸ÕëÄØ#
-  // #uint8Õâ¸öÊÇÊ²Ã´µ¥Î»£¿
-  // ±íÊ¾ÓÃ8bitÀ´±íÊ¾int£¿
-  // ºÃÏñÊÇÕâÑù¸ÉµÄ#
+  //ä¸ºä»€ä¹ˆç”¨è¿™ä¸ªæ™ºèƒ½æŒ‡é’ˆå‘¢#
+  // #uint8è¿™ä¸ªæ˜¯ä»€ä¹ˆå•ä½ï¼Ÿ
+  // è¡¨ç¤ºç”¨8bitæ¥è¡¨ç¤ºintï¼Ÿ
+  // å¥½åƒæ˜¯è¿™æ ·å¹²çš„#
   //---
   const InitUpdateFunc InitUpdate_;
   const CheckZeroUpdateFunc CheckZeroUpdate_;
-  mutable int32_t iter_col_id_; // mutableÊÇcppµÄÒ»¸öĞÂµÄ¹Ø¼ü×Ö£¿
+  mutable int32_t iter_col_id_; // mutableæ˜¯cppçš„ä¸€ä¸ªæ–°çš„å…³é”®å­—ï¼Ÿ
 };
 }

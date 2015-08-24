@@ -1,25 +1,25 @@
-×Ü½áÒ»ÏÂ
+æ€»ç»“ä¸€ä¸‹
 
-1. ÕâÀïÖ÷Òª¶¨ÒåµÄÊÇÈçºÎ´æ´¢row
-2. ÈçºÎ´¦Àíbuff
+1. è¿™é‡Œä¸»è¦å®šä¹‰çš„æ˜¯å¦‚ä½•å­˜å‚¨row
+2. å¦‚ä½•å¤„ç†buff
 
 ---
 
-abstract_append_only_bufferÊÇÒ»¸ö³éÏó
-³éÏóµÄÊÇ¶ÔÊı¾İ´æ´¢
+abstract_append_only_bufferæ˜¯ä¸€ä¸ªæŠ½è±¡
+æŠ½è±¡çš„æ˜¯å¯¹æ•°æ®å­˜å‚¨
 
 ---
 batch_inc_append_only_buffer
 
-ÊÇ¶Ôbatch Inc ÊÇ¶ÔÅúÁ¿Ôö¼ÓµÄoplog×öµÄ×¨ÃÅµÄbuffer
+æ˜¯å¯¹batch Inc æ˜¯å¯¹æ‰¹é‡å¢åŠ çš„oplogåšçš„ä¸“é—¨çš„buffer
 
 inc_append_only_buffer
 
 ---
 
-abstract_row_oplog ÊÇÒ»¸ö³éÏó
+abstract_row_oplog æ˜¯ä¸€ä¸ªæŠ½è±¡
 
-³éÏóµÄÊÇrowµÄ¸÷ÖÖ¸ñÊ½
+æŠ½è±¡çš„æ˜¯rowçš„å„ç§æ ¼å¼
 
 
 

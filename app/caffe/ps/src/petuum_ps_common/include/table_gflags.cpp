@@ -3,8 +3,8 @@
 #include <petuum_ps_common/include/configs.hpp>
 
 // just provide the definitions for simplicity
-//#includeµ½Ò»¸öÈ«¾ÖµÄÍ¨ÓÃµÄÅäÖÃÎÄ¼ş#
-//#È»ºó¶ÔĞèÒªµÄÄÚÈİ×öÏàÓ¦µÄ²¹³ä#
+//#includeåˆ°ä¸€ä¸ªå…¨å±€çš„é€šç”¨çš„é…ç½®æ–‡ä»¶#
+//#ç„¶åå¯¹éœ€è¦çš„å†…å®¹åšç›¸åº”çš„è¡¥å……#
 DEFINE_int32(table_staleness, 0, "table staleness");
 DEFINE_int32(row_type, 0, "table row type");
 DEFINE_int32(row_oplog_type, petuum::RowOpLogType::kDenseRowOpLog, "row oplog type");

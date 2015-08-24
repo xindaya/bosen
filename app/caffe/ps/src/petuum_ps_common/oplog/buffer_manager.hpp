@@ -18,21 +18,21 @@ namespace petuum {
 class BufferPool : boost::noncopyable {
 public:
     BufferPool(int32_t thread_id,
-               size_t pool_size, //³Ø×ÓµÄ´óĞ¡
-               AppendOnlyOpLogType append_only_oplog_type,// oplogµÄÀàĞÍ
-               size_t buff_capacity,//buffµÄÈİÁ¿
-               size_t update_size, // updateµÄÊıÄ¿
-               size_t dense_row_capacity) : // dense_rowµÄÈİÁ¿
+               size_t pool_size, //æ± å­çš„å¤§å°
+               AppendOnlyOpLogType append_only_oplog_type,// oplogçš„ç±»å‹
+               size_t buff_capacity,//buffçš„å®¹é‡
+               size_t update_size, // updateçš„æ•°ç›®
+               size_t dense_row_capacity) : // dense_rowçš„å®¹é‡
       pool_size_(pool_size),
       num_buffs_in_pool_(pool_size),
       begin_(0),
       end_(0),
-      pool_(pool_size) //ÎÒËµpool_ÊÇÊ²Ã´£¬Ô­À´ÊÇÕâ¸ö°¡£¬Ãû×Ö²»Ò»ÖÂ°¡£¬ÓĞÃ»ÓĞ£¡£¡
-    // pool_µ½µ×ÊÇÊ²Ã´ÀàĞÍµÄÊı¾İ£¬vector£¿ ÔÚÄÄÀï¶¨ÒåµÄ#
+      pool_(pool_size) //æˆ‘è¯´pool_æ˜¯ä»€ä¹ˆï¼ŒåŸæ¥æ˜¯è¿™ä¸ªå•Šï¼Œåå­—ä¸ä¸€è‡´å•Šï¼Œæœ‰æ²¡æœ‰ï¼ï¼
+    // pool_åˆ°åº•æ˜¯ä»€ä¹ˆç±»å‹çš„æ•°æ®ï¼Œvectorï¼Ÿ åœ¨å“ªé‡Œå®šä¹‰çš„#
     //#
     //
-    // ³õÊ¼»¯µÄµÚÒ»¼şÊÂ£¬¾ÍÊÇÏÈÉú³ÉÒªÓÃµÄ
-    // buff_ptr¾ÍÊÇµÃµ½µÄpoolµÄµØÖ·
+    // åˆå§‹åŒ–çš„ç¬¬ä¸€ä»¶äº‹ï¼Œå°±æ˜¯å…ˆç”Ÿæˆè¦ç”¨çš„
+    // buff_ptrå°±æ˜¯å¾—åˆ°çš„poolçš„åœ°å€
     //
     // #
     {
@@ -64,8 +64,8 @@ public:
   }
 
 //#
-// PutBuffÕâ¸ö¶¯×÷£¬ĞèÒªÉÏËø
-// Èç¹û²»ÉÏËø»áÔõÃ´Ñù£¿
+// PutBuffè¿™ä¸ªåŠ¨ä½œï¼Œéœ€è¦ä¸Šé”
+// å¦‚æœä¸ä¸Šé”ä¼šæ€ä¹ˆæ ·ï¼Ÿ
 // #
 // #
   void PutBuff(AbstractAppendOnlyBuffer *buff) {
@@ -74,7 +74,7 @@ public:
 
     pool_[end_] = buff;
         //#
-        // Ê¹ÓÃÈ¡Ä£µÄ·½Ê½À´×ö´¦Àí
+        // ä½¿ç”¨å–æ¨¡çš„æ–¹å¼æ¥åšå¤„ç†
         // #
     end_ = (end_ + 1) % pool_size_;
     num_buffs_in_pool_++;
@@ -85,7 +85,7 @@ public:
 
 private:
     //#
-    // Õâ¸öº¯ÊıÊÇstatic »¹ÊÇË½ÓĞµÄ
+    // è¿™ä¸ªå‡½æ•°æ˜¯static è¿˜æ˜¯ç§æœ‰çš„
     // #
   static AbstractAppendOnlyBuffer *CreateAppendOnlyBuffer(
       int32_t thread_id,
@@ -94,10 +94,10 @@ private:
     AbstractAppendOnlyBuffer *buff = 0;
     switch(append_only_oplog_type) {
         // #
-        // c++ ÕâÀïµÄÊÂÇéºÜÆæ¹Ö
-        // ²»ÖªµÀÕâÀïµÄ¶ÔÏó»úÖÆÊÇÈçºÎÊµÏÖµÄ
-        // ¾ÍÊÇÊ¹ÓÃ³éÏóµÄÀà£¬À´×÷ÎªÖ¸Õë
-        // Ö¸ÏòµÄÊÇ¾ßÌåµÄÊµÏÖ
+        // c++ è¿™é‡Œçš„äº‹æƒ…å¾ˆå¥‡æ€ª
+        // ä¸çŸ¥é“è¿™é‡Œçš„å¯¹è±¡æœºåˆ¶æ˜¯å¦‚ä½•å®ç°çš„
+        // å°±æ˜¯ä½¿ç”¨æŠ½è±¡çš„ç±»ï¼Œæ¥ä½œä¸ºæŒ‡é’ˆ
+        // æŒ‡å‘çš„æ˜¯å…·ä½“çš„å®ç°
         // @
         // #
       case Inc:
@@ -124,10 +124,10 @@ private:
   size_t num_buffs_in_pool_;
   int begin_, end_;
   std::vector<AbstractAppendOnlyBuffer*> pool_;
-    //pool_µÄ¶¨ÒåÔ­À´ÔÚÕâÀï£¬¹ûÈ»ÊÇvectorÀàĞÍµÄ£¬
-    // #²»È»ÔõÃ´Ê¹ÓÃ·¶Î§forÕâ¸ö¹¤¾ß#
+    //pool_çš„å®šä¹‰åŸæ¥åœ¨è¿™é‡Œï¼Œæœç„¶æ˜¯vectorç±»å‹çš„ï¼Œ
+    // #ä¸ç„¶æ€ä¹ˆä½¿ç”¨èŒƒå›´forè¿™ä¸ªå·¥å…·#
 
-    //Éú³ÉÈ«¾ÖµÄÅÅËûËø£¬µ«ÊÇÎªÊ²Ã´ĞèÒªÓÃËøÄØ
+    //ç”Ÿæˆå…¨å±€çš„æ’ä»–é”ï¼Œä½†æ˜¯ä¸ºä»€ä¹ˆéœ€è¦ç”¨é”å‘¢
   std::mutex mtx_;
 
   std::condition_variable cv_;
@@ -141,12 +141,12 @@ public:
 
       head_thread_id_(head_thread_id),
             //#
-            // Í¨¹ıÕâ¸öÉêÃ÷º¯Êı£¬Õâ¸öbufferÊÇ°´ÕÕthreadµÄÊıÄ¿¶àÉÙÀ´ÉèÖÃµÄ
-            // ÕâÀïÓĞÊ²Ã´ÒâÒåÄØ
+            // é€šè¿‡è¿™ä¸ªç”³æ˜å‡½æ•°ï¼Œè¿™ä¸ªbufferæ˜¯æŒ‰ç…§threadçš„æ•°ç›®å¤šå°‘æ¥è®¾ç½®çš„
+            // è¿™é‡Œæœ‰ä»€ä¹ˆæ„ä¹‰å‘¢
             //
             // #
-            // Ê¹ÓÃvec ×÷Îªºó×º£¬±íÊ¾ÎÒÃÇÕâ¸öÀàĞÍÊÇÏòÁ¿µÄ
-            // ÏÂÃæÓÃµÄÊÇvectorµÄ¹¹Ôì·½·¨£¬Õ¼Î»·½Ê½
+            // ä½¿ç”¨vec ä½œä¸ºåç¼€ï¼Œè¡¨ç¤ºæˆ‘ä»¬è¿™ä¸ªç±»å‹æ˜¯å‘é‡çš„
+            // ä¸‹é¢ç”¨çš„æ˜¯vectorçš„æ„é€ æ–¹æ³•ï¼Œå ä½æ–¹å¼
             // #
       buffer_pool_vec_(num_table_threads) { }
 
@@ -165,10 +165,10 @@ public:
           size_t update_size,
           size_t dense_row_capacity) {
 //#
-// idx ±íÊ¾Ë÷Òı
+// idx è¡¨ç¤ºç´¢å¼•
 // thread_id -head_thread_id_
-// ÄÑµÀÕâ¸öµÄÒâË¼ÊÇËµ£¬Ïß³ÌµÄidÊÇÁ¬ĞøµÄ£¿
-// Òª²»È»ÎªºÎÊ¹ÓÃÕâÖÖ·½Ê½#
+// éš¾é“è¿™ä¸ªçš„æ„æ€æ˜¯è¯´ï¼Œçº¿ç¨‹çš„idæ˜¯è¿ç»­çš„ï¼Ÿ
+// è¦ä¸ç„¶ä¸ºä½•ä½¿ç”¨è¿™ç§æ–¹å¼#
 //
 // #
 // #
@@ -183,8 +183,8 @@ public:
   }
 
 //#
-// Õâ¸ö·µ»ØµÄÊÇÒ»¸öÒıÓÃ°É
-// ÕâÀïÊ¹ÓÃµÄÊÇÍ¨¹ıthread_id À´»ñÈ¡ÏàÓ¦µÄË÷ÒıÎ»ÖÃ
+// è¿™ä¸ªè¿”å›çš„æ˜¯ä¸€ä¸ªå¼•ç”¨å§
+// è¿™é‡Œä½¿ç”¨çš„æ˜¯é€šè¿‡thread_id æ¥è·å–ç›¸åº”çš„ç´¢å¼•ä½ç½®
 // #
   AbstractAppendOnlyBuffer *GetBuff(int32_t thread_id) {
     int32_t idx = thread_id - head_thread_id_;

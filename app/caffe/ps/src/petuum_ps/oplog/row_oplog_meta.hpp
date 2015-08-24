@@ -4,7 +4,7 @@
 
 namespace petuum {
 // #
-// 从这个名字来看是Row OP 操作的元信息
+// 浠庤繖涓悕瀛楁潵鐪嬫槸Row OP 鎿嶄綔鐨勫厓淇℃伅
 // 1. clock
 // 2. importance
 // #
