@@ -15,9 +15,9 @@ namespace petuum {
  * updates) tuples.
  */
 //#
-// 感觉这个类和batch_inc_append_only是一个样的啊
+// 鎰熻杩欎釜绫诲拰batch_inc_append_only鏄竴涓牱鐨勫晩
 // TODO
-// 这个是没有完成的类，估计在其他部分并没有使用
+// 杩欎釜鏄病鏈夊畬鎴愮殑绫伙紝浼拌鍦ㄥ叾浠栭儴鍒嗗苟娌℃湁浣跨敤
 // #
 class DenseAppendOnlyBuffer : public AbstractAppendOnlyBuffer {
 public:
