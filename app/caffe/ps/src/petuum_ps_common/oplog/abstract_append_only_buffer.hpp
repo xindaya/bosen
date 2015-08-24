@@ -6,12 +6,12 @@
 
 #include <boost/noncopyable.hpp>
 //#
-// ¸ù¾ÝÕâ¸öÀà°üº¬µÄincludeÎÄ¼þ£¬¿ÉÒÔ¶Ï¶¨£¬¸ÃÀàÊÇÒ»¸ö»ù±¾µÄ×é¼þ
+// æ ¹æ®è¿™ä¸ªç±»åŒ…å«çš„includeæ–‡ä»¶ï¼Œå¯ä»¥æ–­å®šï¼Œè¯¥ç±»æ˜¯ä¸€ä¸ªåŸºæœ¬çš„ç»„ä»¶
 // #
 namespace petuum {
 // #
-//  ¹¹Ôìº¯ÊýÀïÃæÓÐthread_id ÀàÐÍ£¬ÎÒÃÇ¿ÉÒÔÈÏÎª£¬Õâ¸öÊý¾Ý½á¹¹ÊÇÎªÁËthread¹¹ÔìµÄ£¬
-//  ÓÃÀ´ÓÅ»¯threadµÄ²Ù×÷£¬±ÜÃâÍ¬²½Êý¾ÝÍ¬²½Ôì³É×èÈû
+//  æž„é€ å‡½æ•°é‡Œé¢æœ‰thread_id ç±»åž‹ï¼Œæˆ‘ä»¬å¯ä»¥è®¤ä¸ºï¼Œè¿™ä¸ªæ•°æ®ç»“æž„æ˜¯ä¸ºäº†threadæž„é€ çš„ï¼Œ
+//  ç”¨æ¥ä¼˜åŒ–threadçš„æ“ä½œï¼Œé¿å…åŒæ­¥æ•°æ®åŒæ­¥é€ æˆé˜»å¡ž
 //
 // #
 
