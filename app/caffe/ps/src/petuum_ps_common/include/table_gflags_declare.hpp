@@ -6,8 +6,8 @@
 
 
 
-//#ÉùÃ÷ÅäÖÃÐèÒªµÄÅäÖÃÏî#
-//#Ê¹ÓÃDECLAREÀ´ÉùÃ÷#
+//#å£°æ˜Žé…ç½®éœ€è¦çš„é…ç½®é¡¹#
+//#ä½¿ç”¨DECLAREæ¥å£°æ˜Ž#
 
 DECLARE_int32(table_staleness);
 DECLARE_int32(row_type);
