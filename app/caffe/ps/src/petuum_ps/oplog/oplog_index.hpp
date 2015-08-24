@@ -11,7 +11,7 @@
 #include <petuum_ps/thread/context.hpp>
 
 // #
-// 1. 单例对象 从noncopyable看出来的
+// 1. 鍗曚緥瀵硅薄 浠巒oncopyable鐪嬪嚭鏉ョ殑
 // #
 
 namespace petuum {
