@@ -17,6 +17,7 @@ namespace petuum {
 // applyUpdate()
 // applyBatchUpdate()
 // 必须可以并行的执行
+// Thread Safe考虑了Inc，BatchInc和DenseBatchInc的线程安全
 // petuum system 不对其他的线程有安全性的要求
 // #
 
