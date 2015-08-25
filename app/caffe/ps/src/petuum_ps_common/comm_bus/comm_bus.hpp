@@ -26,7 +26,14 @@ namespace petuum {
  * A thread is local if it is in the same CommBus object as myself, otherwise it
  * is remote.
  */
-
+// 这个类在本地的线程和远程的线程之间组合了一个shared bus
+// 目的是为了简化通信操作和统一进程内，与进程之间的通信。
+// 每一个thread都被当做一个唯一的entity，同时拥有一个全局唯一的ID
+// ID 的格式为 host_ID 加上线程的local ID
+// 为了简化编码，我们没有在错误处理和恢复上做太多的工作。
+// 如果不小心挂了，我们会马上死掉，然后咱们就可以愉快的debug了
+// 每个线程都是唯一的，不要注册两次，会产生问题的
+//
 class CommBus : boost::noncopyable {
 public:
   static const int kNone = 0;
@@ -45,10 +52,10 @@ public:
     // if ((ltype_ & kInterProc) == true)
     std::string network_addr_;
 
-    int num_bytes_inproc_send_buff_;
-    int num_bytes_inproc_recv_buff_;
-    int num_bytes_interproc_send_buff_;
-    int num_bytes_interproc_recv_buff_;
+    int num_bytes_inproc_send_buff_; // 线程内部发送buff
+    int num_bytes_inproc_recv_buff_; // 线程内部接收buff
+    int num_bytes_interproc_send_buff_; // 线程间发送buff
+    int num_bytes_interproc_recv_buff_; // 线程间接收buff
 
     Config():
       entity_id_(0),
