@@ -55,6 +55,7 @@ bool BatchIncAppendOnlyBuffer::BatchInc(int32_t row_id, const int32_t *col_ids,
 // 这个没有给定具体的列的id列表，而是从一个偏移量开始，更新多个数据
 //
 // 从具体的实现上来看，也是讲这个过程转化为传统的上面的工作
+//
 // #
 
 bool BatchIncAppendOnlyBuffer::DenseBatchInc(int32_t row_id, const void *deltas,
