@@ -14,6 +14,11 @@
 namespace petuum {
 
 // VectorClock is a thread-safe extension of VectorClockST.
+    // MT 的意思就是multi thread 多线程的意思
+    // 这里的意思就是支持多线程
+    //美名曰线程安全
+
+    // 安全是不是用了锁
 class VectorClockMT : public VectorClock, boost::noncopyable {
 public:
   VectorClockMT();
@@ -30,6 +35,8 @@ public:
 
 private:
   // Lock for slowest record
+
+  // 果然有锁
   mutable SharedMutex mutex_;
 };
 
