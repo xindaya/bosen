@@ -14,13 +14,6 @@
 // 是否是因为Vector的结构导致反序列化如此简洁 (相比于mapstore)
 
 
-// 此段为乱码
-// #
-// �ܶ���֮
-// vector��Ϊ��ײ�Ĵ洢��ʵ��������map�����һ��
-// #
-
-
 namespace petuum {
 // V is an arithmetic type. V is the data type and also the update type.
 // V needs to be POD.

@@ -5,7 +5,8 @@
 #include <petuum_ps_common/storage/ns_count_calc.hpp>
 
 namespace petuum {
-// using 别名
+// using 别名，DenseRowCore就是等式后面的别名
+// DenseRowCore<mytype>的意思就是：NumericStoreRow<VectorStore, mytype >
 template<typename V>
 using DenseRowCore  = NumericStoreRow<VectorStore, V >;
 
