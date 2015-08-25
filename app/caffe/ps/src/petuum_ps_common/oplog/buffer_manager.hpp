@@ -190,7 +190,7 @@ public:
     int32_t idx = thread_id - head_thread_id_;
     return buffer_pool_vec_[idx]->GetBuff();
   }
-
+// 每个线程一个bufferpool，bufferpool为环状存储
   void PutBuff(int32_t thread_id, AbstractAppendOnlyBuffer *buff) {
     int32_t idx = thread_id - head_thread_id_;
     buffer_pool_vec_[idx]->PutBuff(buff);
