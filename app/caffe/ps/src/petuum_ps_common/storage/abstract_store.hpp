@@ -6,6 +6,10 @@
 
 #include <glog/logging.h>
 
+// 定义抽象类的存储
+// 关键的函数：serialize和Deserialize
+// 序列化就是把对象翻译成二进制流，反序列化就是把二进制翻译回对象
+
 namespace petuum {
 
 
