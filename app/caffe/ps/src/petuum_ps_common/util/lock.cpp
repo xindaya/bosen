@@ -5,10 +5,6 @@
 #include <glog/logging.h>
 
 //#
-// 这个是petuum使用的锁的自己实现
-// 为什么要对锁进一步封装？
-//
-// #
 namespace petuum {
 
 // ==================== SharedMutex ===================

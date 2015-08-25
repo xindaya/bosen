@@ -1,6 +1,9 @@
 //Author: Jinliang Wei
 #pragma once
-// ͳ����
+
+
+// 统计各个组件的相关性能，便于debug
+// 这个类不需要深入ͳ
 
 #include <petuum_ps_common/util/high_resolution_timer.hpp>
 #include <petuum_ps_common/include/configs.hpp>

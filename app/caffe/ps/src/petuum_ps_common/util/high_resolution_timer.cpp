@@ -2,6 +2,8 @@
 #include <glog/logging.h>
 #include <petuum_ps_common/util/high_resolution_timer.hpp>
 
+// 如同hpp文件中所说，这个类的目的是为了便于统计程序的性能
+// 不用细看，会用就可以了
 namespace petuum {
 
 HighResolutionTimer::HighResolutionTimer() : total_time_(0) {

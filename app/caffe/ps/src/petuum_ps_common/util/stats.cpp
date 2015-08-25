@@ -7,6 +7,9 @@
 #include <sstream>
 #include <fstream>
 
+// 统计各个组件的相关性能，便于debug
+// 这个类不需要深入ͳ
+
 namespace petuum {
 TableGroupConfig Stats::table_group_config_;
 std::string Stats::stats_path_;
