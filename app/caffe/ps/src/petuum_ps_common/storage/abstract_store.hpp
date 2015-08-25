@@ -8,13 +8,6 @@
 
 namespace petuum {
 
-//#
-//  翻译一下
-//  这里需要这个数据类型是数字类型的
-//
-// #
-
-//V是数字类型的，同时V也是data的类型和更新的类型
 
 // V is an arithmetic type. V is the data type and also the update type.
 // V needs to be a numeric type.
@@ -24,13 +17,10 @@ public:
   AbstractStore() { }
   virtual ~AbstractStore() { }
 
-// 拷贝赋值函数
   AbstractStore(const AbstractStore<V> &other) { }
 
-  // 直接赋值
   AbstractStore<V> & operator = (const AbstractStore<V> &other) { }
 
-// 初始值需要配置，需要在启动的时候使用
   virtual void Init(size_t capacity) = 0;
 
   virtual size_t SerializedSize() const = 0;
