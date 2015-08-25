@@ -18,7 +18,7 @@
 #include <petuum_ps_common/util/lock.hpp>
 #include <petuum_ps_common/util/stats.hpp>
 
-// ml目录下的feature
+// ml目录下的feature的sparsefeature
 
 namespace petuum {
 

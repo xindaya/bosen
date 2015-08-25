@@ -107,7 +107,7 @@ size_t MapStore<V>::SerializedSize() const {
 //#
 // ���Ӧ��û��ʵ�־���ķ�������Ҫtodo��
 // TODO
-// #
+// #序列化操作，对对象转为二进制
 template<typename V>
 size_t MapStore<V>::Serialize(void* bytes) const {
   void* data_ptr = bytes;
@@ -121,7 +121,7 @@ size_t MapStore<V>::Serialize(void* bytes) const {
   }
   return SerializedSize();
 }
-
+// 反序列化操作，二进制转为对象
 template<typename V>
 void MapStore<V>::Deserialize(const void* data, size_t num_bytes) {
   data_.clear();

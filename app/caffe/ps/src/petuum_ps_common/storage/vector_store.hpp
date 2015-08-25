@@ -8,10 +8,9 @@
 #include <petuum_ps_common/storage/abstract_store.hpp>
 #include <petuum_ps_common/storage/abstract_store_iterator.hpp>
 
-// 此段为新添加代码解释
 // VectorStore的序列化操作直接memcpy
 // VectorStore的反序列化操作直接resize再memcpy即可
-// 是否是因为Vector的结构导致反序列化如此简洁 (相比于mapstore)
+// 疑问：是否是因为Vector的结构导致反序列化如此简洁 (相比于mapstore)
 
 
 namespace petuum {
@@ -90,6 +89,8 @@ size_t VectorStore<V>::Serialize(void *bytes) const {
   memcpy(bytes, data_.data(), num_bytes);
   return num_bytes;
 }
+
+// 疑问：是否是因为Vector的结构导致反序列化如此简洁 (相比于mapstore)
 
 template<typename V>
 void VectorStore<V>::Deserialize(const void *data, size_t num_bytes) {

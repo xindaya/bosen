@@ -2,6 +2,14 @@
 #include <petuum_ps_common/include/abstract_row.hpp>
 #include <glog/logging.h>
 
+// 基类AbstractRow在/include中
+// 这个基类定义了Row 类型的接口
+// 主要考虑两种操作：update和thread safe importance
+// update就是w + delta w的操作，delta w可以为正也可为负，对应addUpdate和substractUpdate
+// 针对update有专门的getImportance，来确定update是否成功的操作
+// Get importance of this update as if it is applied on to the given value.
+// Thread Safe考虑了Inc，BatchInc和DenseBatchInc的线程安全
+
 namespace petuum {
 
 template<typename V>
@@ -16,7 +24,7 @@ virtual void SubtractUpdates(int32_t column_id, void *update1,
                      const void *update2) const {
   *(reinterpret_cast<V*>(update1)) -= *(reinterpret_cast<const V*>(update2));
 }
-//# ��Ҫ��ֻ������һ������
+//#
 // Get importance of this update as if it is allied on to the given value.
 virtual double GetImportance(int32_t column_id, const void *update,
                      const void *value) const {

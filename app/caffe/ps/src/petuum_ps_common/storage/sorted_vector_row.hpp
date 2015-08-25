@@ -4,7 +4,7 @@
 #include <petuum_ps_common/storage/sorted_vector_store.hpp>
 
 namespace petuum {
-
+// SortedVectorRowCore：NumericStoreRow的别名操作
 template<typename V>
 using SortedVectorRowCore  = NumericStoreRow<SortedVectorStore, V >;
 

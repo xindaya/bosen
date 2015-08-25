@@ -72,6 +72,7 @@ size_t VectorStoreFloat16<V>::SerializedSize() const {
   return data_.size() * sizeof(uint16_t);
 }
 
+// 必须要用compressor逐个元素做压缩（序列化）和解压缩（反序列化）操作
 template<typename V>
 size_t VectorStoreFloat16<V>::Serialize(void *bytes) const {
   uint16_t *typed_mem = reinterpret_cast<uint16_t*>(bytes);
