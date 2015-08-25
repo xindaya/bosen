@@ -50,6 +50,7 @@ public:
 
   virtual void* Next(int32_t *column_id) = 0;
 
+  // 遍历所有，通过Next或者NextConst完成遍历寻找
   // Guaranteed ordered traversal, in ascending order of column_id
   virtual const void* BeginIterateConst(int32_t *column_id) const = 0;
 
