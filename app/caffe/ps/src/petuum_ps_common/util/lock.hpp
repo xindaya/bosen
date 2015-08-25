@@ -11,6 +11,8 @@
 
 namespace petuum {
 
+//     下面的是用法
+
 // Read-write mutex, almost equivalent to boost::shared_mutex (but without
 // timed locking). Benchmark shows that this is about 2x faster than
 // boost::shared_mutex on Ubuntu 12.04.
@@ -51,12 +53,14 @@ public:
   void unlock_shared();
 
 protected:
+//  实现的方式是对pthread进行封装
   pthread_rwlock_t rw_lock_;
 };
 
 
 // Provide recursive lock with write lock counting. Note the function override
 // hides those in SharedMutex.
+    // 递归锁， 实现方式是使用计数方法
 class RecursiveSharedMutex: public SharedMutex {
 public:
   RecursiveSharedMutex();
@@ -79,16 +83,23 @@ private:
   unsigned int write_lock_count_;
 
   // ID of the writer thread; set during the write lock.
+  // 封装，封装，封装
   pthread_t writer_id;
 };
 
 
+    // 原来petuum又自己实现了一套锁，为啥呢？
+//    看不上std？
+//    看不上boost？
+
+//    旋转锁
 class SpinMutex : public Lockable {
 public:
   SpinMutex() {
     lock_.clear();
   }
 
+  // 用到了c++11 中atomic 中的特性，内存模型
   inline void lock() {
     while (lock_.test_and_set(std::memory_order_acquire)) { }
   }

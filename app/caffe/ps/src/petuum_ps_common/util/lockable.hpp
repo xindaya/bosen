@@ -4,8 +4,7 @@
 #pragma once
 
 //#
-// Õâ¸öÀàµÄ×÷ÓÃÏàµ±ÓÚÒ»¸ö½Ó¿ÚÀà£¬»òÕß³éÏóÀà
-// ÊµÏÖµÄÊÇ½ø³Ì¡¢Ïß³ÌÖ®¼äµÄ½»»¥
+// æ˜¯ä¸€ä¸ªæ¥å£ï¼Œå¯å¦åŠ é”ï¼Œå¯å¦mt
 // #
 namespace petuum {
 
@@ -16,17 +15,23 @@ class Lockable {
 public:
   // Blocks until a lock can be obtained for the current execution agent. If
   // an exception is thrown, no lock is obtained.
+
+// é˜»å¡ï¼Œé™¤éå½“å‰çš„æ­£åœ¨æ‰§è¡Œçš„agentå¯ä»¥è·å–é”
   virtual void lock() = 0;
 
   // Releases the lock held by the execution agent. Throws no exceptions.
   // requires: The current execution agent should hold the lock.
+
+  // æ­£åœ¨æ‰§è¡Œçš„è¿›ç¨‹é‡Šæ”¾é”
   virtual void unlock() = 0;
 
   // Attempts to acquire the lock for the current execution agent without
   // blocking. If an exception is thrown, no lock is obtained.  Return true if
   // the lock was acquired, false otherwise
+  // å°è¯•è·å–é”
   virtual bool try_lock() = 0;
 
+  // æ„Ÿè§‰è¿™äº›apiéƒ½æ˜¯ä»å“ªä¸ªæ ‡å‡†åº“é‡Œæ¬è¿‡æ¥çš„
 };
 
 }   // namespace petuum
