@@ -2,6 +2,8 @@
 
 #include <petuum_ps_common/storage/abstract_store.hpp>
 
+// ns: numeric store
+// importance的get和apply，importance用来ensure update到位了
 namespace petuum {
 
 template<typename V>

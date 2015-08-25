@@ -8,6 +8,9 @@
 
 #include <mutex>
 
+// 基类AbstractRow在/include中
+// 基类介绍见numeric_container_row.hpp
+
 namespace petuum {
 
 template<template<typename> class StoreType, typename V,

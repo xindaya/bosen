@@ -2,6 +2,8 @@
 
 #include <petuum_ps_common/storage/ns_abstract_imp_calc.hpp>
 
+// sum importance
+
 namespace petuum {
 
 template<typename V>

@@ -9,6 +9,8 @@
 #include <petuum_ps_common/storage/entry.hpp>
 #include <petuum_ps_common/storage/abstract_store.hpp>
 
+// 尚未完成，不能工作
+
 namespace petuum {
 
 // WARNING: THIS IS INCOMPLETE! DOES NOT WORK!!

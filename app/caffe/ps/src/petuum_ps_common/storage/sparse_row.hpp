@@ -4,7 +4,7 @@
 #include <petuum_ps_common/storage/map_store.hpp>
 
 namespace petuum {
-
+// 依然是别名
 template<typename V>
 using SparseRowCore  = NumericStoreRow<MapStore, V >;
 

@@ -6,6 +6,10 @@
 
 #include <glog/logging.h>
 
+// 定义抽象类的存储
+// 关键的函数：serialize和Deserialize
+// 序列化就是把对象翻译成二进制流，反序列化就是把二进制翻译回对象
+
 namespace petuum {
 
 
@@ -27,6 +31,7 @@ public:
 
   virtual size_t Serialize(void *bytes) const = 0;
 
+  // 反序列化，把二进制翻译成对象，上面的Serialize即为相反过程，序列化，对象转换为二进制流
   // May be called before Init().
   virtual void Deserialize(const void *data, size_t num_bytes) = 0;
 

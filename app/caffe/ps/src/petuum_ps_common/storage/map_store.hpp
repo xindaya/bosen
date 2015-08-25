@@ -7,15 +7,13 @@
 #include <vector>
 #include <glog/logging.h>
 
+// ç›¸æ¯”äºVectorStoreè‡ªæœ‰çš„Vectorç»“æ„ï¼ŒMapStoreçš„åºåˆ—åŒ–å’Œååºåˆ—åŒ–åˆ™å¤æ‚ä¸€äº›
+// åºåˆ—åŒ–åˆ™è¦å…·ä½“åˆ°å¯¹æ•°ç»„æ¯ä¸€ä¸ªå…ƒç´ è¿›è¡Œæ“ä½œ
+// ååºåˆ—åŒ–ä¹Ÿæ˜¯æ•°ç»„ä¸­é€ä¸ªå…ƒç´ å­˜å‚¨
+
 namespace petuum {
 
 
-//#
-// ¶àÏß³ÌµÄÏ¡ÊèĞĞ£¬Ö§³Ö²»Ô¼Êø£¬»òÕßËµÊÇÎŞÏŞÖÆµÄÁĞ
-// ÕâÀïÃ»ÓĞ·ÇÁãµÄentryÔÚmapÀàĞÍµÄ´æ´¢ÖĞ
-// Èç¹ûÓöµ½ÓĞ0µÄÇé¿ö£¬±ÈÈçËµÔÚApplyInc »òÕßApplyBatchIncÖĞ£¬¾Í»á½«
-// 0µÄÇé¿öÉ¾³ı
-// #
 // Multi-threaded sparse row, support unbounded # of columns.  There is never
 // non-zero entry in the map storage, as ApplyInc / ApplyBatchInc
 // removes the zero-writes.
@@ -33,7 +31,7 @@ public:
       data_(other.data_) { }
 
     //#
-    // & operator Ô­À´ÊÇÒıÓÃ°¡
+    // & operator Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
     // #
   MapStore<V> & operator = (const MapStore<V> &other) {
     data_ = other.data_;
@@ -55,16 +53,16 @@ public:
 
 private:
     //#
-    // Ê¹ÓÃÎŞĞòmapÀ´×÷ÎªdataµÄ´æ´¢
-    // 1. ¼òµ¥
-    // 2. ·½±ã
+    // Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mapï¿½ï¿½ï¿½ï¿½Îªdataï¿½Ä´æ´¢
+    // 1. ï¿½ï¿½
+    // 2. ï¿½ï¿½ï¿½ï¿½
     // #
   std::unordered_map<int32_t, V> data_;
 };
 
 // ================= Implementation =================
 
-    // ´«ÈëµÄÊÇkey£¬µÃµ½µÄÊÇvalue£¬Í¬Ê±¶ÔÊı¾İÀàĞÍ×öÁË´¦Àí
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½keyï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½valueï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½
 template<typename V>
 V MapStore<V>::Get(int32_t col_id) const {
   auto it = data_.find(col_id);
@@ -89,7 +87,7 @@ const void MapStore<V>::CopyToVector(void *to) const {
   vec->resize(data_.size());
   vec->clear();
 
-    //½«Êı¾İÒ»ÌõÒ»ÌõµÄ¹àÈëvecÖĞ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½vecï¿½ï¿½
   for (const auto & pair : data_) {
     vec->push_back(pair);
   }
@@ -100,16 +98,16 @@ size_t MapStore<V>::num_entries() const {
   return data_.size();
 }
 
-//ĞòÁĞ»¯valueĞèÒªµÄ¿Õ¼ä´óĞ¡
+//ï¿½ï¿½ï¿½Ğ»ï¿½valueï¿½ï¿½Òªï¿½Ä¿Õ¼ï¿½ï¿½Ğ¡
 template<typename V>
 size_t MapStore<V>::SerializedSize() const {
   return data_.size() * (sizeof(int32_t) + sizeof(V));
 }
 
 //#
-// Õâ¸öÓ¦¸ÃÃ»ÓĞÊµÏÖ¾ßÌåµÄ·½·¨£¬ĞèÒªtodo°É
+// ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ã»ï¿½ï¿½Êµï¿½Ö¾ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªtodoï¿½ï¿½
 // TODO
-// #
+// #åºåˆ—åŒ–æ“ä½œï¼Œå¯¹å¯¹è±¡è½¬ä¸ºäºŒè¿›åˆ¶
 template<typename V>
 size_t MapStore<V>::Serialize(void* bytes) const {
   void* data_ptr = bytes;
@@ -123,7 +121,7 @@ size_t MapStore<V>::Serialize(void* bytes) const {
   }
   return SerializedSize();
 }
-
+// ååºåˆ—åŒ–æ“ä½œï¼ŒäºŒè¿›åˆ¶è½¬ä¸ºå¯¹è±¡
 template<typename V>
 void MapStore<V>::Deserialize(const void* data, size_t num_bytes) {
   data_.clear();

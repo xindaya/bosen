@@ -9,6 +9,11 @@
 #include <petuum_ps_common/storage/entry.hpp>
 #include <petuum_ps_common/storage/abstract_store.hpp>
 
+// 抽象类存储的一种类，有序向量map store
+// 重要操作：shouldimpact，根据当前capacity与entry的数目之差是否大于2倍的kBlockSize来判断是否需要对空间紧凑
+// 重要变量kBlockSize是一个常量，用来作为判断当前mapstore是否紧凑的一个参数
+// 在remove entry时shouldimpact会首先判断是否需要紧凑来决定是否要优化以节省空间
+
 namespace petuum {
 
 // SortedVectorMapStore stores pairs of (int32_t, V) in an array, sorted on
@@ -86,9 +91,11 @@ private:
   size_t RemoveOneEntryAndCompact(int32_t vector_idx);
 
   static size_t GetSerializedNumEntries(size_t num_bytes);
-
+// 是否紧凑，根据当前空间和entry的数目之差是否大于两倍的kBlockSize来判断
+// 后续如果要remove，判断空间不紧凑即可优化空间存储，节省空间，详情见RemoveOneEntryAndCompact
   static bool ShouldCompact(size_t capacity, size_t num_entries);
 
+  // kBlockSize是一个常量，用来作为判断当前mapstore是否紧凑的一个参数
   static const size_t kBlockSize;
 
   // Array of sorted entries.

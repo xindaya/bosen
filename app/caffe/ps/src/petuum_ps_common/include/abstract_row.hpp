@@ -13,13 +13,18 @@ namespace petuum {
 // not require thread safety of other functions.
 
 //#
-// 这个类定义了Row 类型的接口，
+// 这个类定义了Row 类型的接口
+// 主要考虑两种操作：update和thread safe importance
+// update就是w + delta w的操作，delta w可以为正也可为负，对应addUpdate和substractUpdate
+// 针对update有专门的getImportance，来确定update是否成功的操作
+// Get importance of this update as if it is applied on to the given value.
+// Thread Safe考虑了Inc，BatchInc和DenseBatchInc的线程安全
+
+// petuum system 不对其他的线程有安全性的要求
+//
 // applyUpdate()
 // applyBatchUpdate()
 // 必须可以并行的执行
-// petuum system 不对其他的线程有安全性的要求
-// #
-
 
 // #
 // noncopyable 不可复制，单例对象
