@@ -11,7 +11,7 @@
 // 此段为新添加代码解释
 // VectorStore的序列化操作直接memcpy
 // VectorStore的反序列化操作直接resize再memcpy即可
-// 是否是因为Vector的结构导致反序列化如此简洁
+// 是否是因为Vector的结构导致反序列化如此简洁 (相比于mapstore)
 
 
 // 此段为乱码
