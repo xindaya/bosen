@@ -8,9 +8,8 @@
 #include <petuum_ps_common/storage/abstract_store.hpp>
 #include <petuum_ps_common/storage/abstract_store_iterator.hpp>
 
-// #
-// ���������Ǿ����float16�Ĵ洢���͵Ĺ���
-// #
+// 同样是VectorStore，对于float16的类型则无法直接整体做序列化和反序列化操作
+// 必须要用compressor逐个元素做压缩（序列化）和解压缩（反序列化）操作
 
 namespace petuum {
 // V must be float.
