@@ -27,6 +27,7 @@ public:
 
   virtual size_t Serialize(void *bytes) const = 0;
 
+  // 反序列化，把二进制翻译成对象，上面的Serialize即为相反过程，序列化，对象转换为二进制流
   // May be called before Init().
   virtual void Deserialize(const void *data, size_t num_bytes) = 0;
 
