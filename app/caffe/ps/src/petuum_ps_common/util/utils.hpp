@@ -10,6 +10,8 @@
 #include <float.h>
 #include <math.h>
 
+
+// 这个文件的命名有些误导，就是提供了一些工具方法，关键就是解析server_file 文件
 namespace petuum {
 // Read in a file containing list of servers. 'server_file' need to have the
 // following line structure:
@@ -18,7 +20,8 @@ namespace petuum {
 //
 // Note that the first line of the file will be considered as name node.
 // #注意使用 tab 分割#
-void GetHostInfos(std::string server_file,
+
+    void GetHostInfos(std::string server_file,
   std::map<int32_t, HostInfo> *host_map);
 
 void GetServerIDsFromHostMap(std::vector<int32_t> *server_ids,
