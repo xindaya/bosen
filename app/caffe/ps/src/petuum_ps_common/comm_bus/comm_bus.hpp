@@ -57,6 +57,7 @@ public:
     int num_bytes_interproc_send_buff_; // 线程间发送buff
     int num_bytes_interproc_recv_buff_; // 线程间接收buff
 
+    // 默认构造函数，所有的数值都默认赋值为0
     Config():
       entity_id_(0),
       ltype_(kNone),
@@ -65,6 +66,7 @@ public:
       num_bytes_interproc_send_buff_(0),
       num_bytes_interproc_recv_buff_(0) { }
 
+    //输入ip地址的构造函数
     Config(int32_t entity_id, int ltype, std::string network_addr):
       entity_id_(entity_id),
       ltype_(ltype),
@@ -75,6 +77,7 @@ public:
       num_bytes_interproc_recv_buff_(0) { }
   };
 
+// 内部的结构体，看名字，应该是一个封装的thread的通信元信息
   struct ThreadCommInfo : boost::noncopyable {
   public:
     int32_t entity_id_;

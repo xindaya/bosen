@@ -2,7 +2,9 @@
 #include <petuum_ps_common/thread/msg_base.hpp>
 #include <petuum_ps_common/util/mem_block.hpp>
 #include <petuum_ps_common/comm_bus/comm_bus.hpp>
-
+// 该类在多个thread中使用，
+// 比如server_thread
+// ssp_push_server_thread
 namespace petuum {
 class MemTransfer {
 public:
