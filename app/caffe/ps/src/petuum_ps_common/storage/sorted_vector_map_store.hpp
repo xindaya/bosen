@@ -10,9 +10,9 @@
 #include <petuum_ps_common/storage/abstract_store.hpp>
 
 // 抽象类存储的一种类，有序向量map store
-// 重要操作：shouldimpact，根据当前capacity与entry的数目之差是否大于2倍的kBlockSize来判断是否紧凑
+// 重要操作：shouldimpact，根据当前capacity与entry的数目之差是否大于2倍的kBlockSize来判断是否需要对空间紧凑
 // 重要变量kBlockSize是一个常量，用来作为判断当前mapstore是否紧凑的一个参数
-// 在remove entry时shouldimpact会首先判断是否紧凑来决定是否要优化以节省空间
+// 在remove entry时shouldimpact会首先判断是否需要紧凑来决定是否要优化以节省空间
 
 namespace petuum {
 
