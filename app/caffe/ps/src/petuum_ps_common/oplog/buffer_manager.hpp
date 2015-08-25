@@ -25,10 +25,10 @@ public:
                size_t dense_row_capacity) : // dense_row的容量
       pool_size_(pool_size),
       num_buffs_in_pool_(pool_size),
-      begin_(0),
+      begin_(0),// pool头指针
       end_(0),
       pool_(pool_size) //我说pool_是什么，原来是这个啊，名字不一致啊，有没有！！
-    // pool_到底是什么类型的数据，vector？ 在哪里定义的#
+    // pool_到底是什么类型的数据，vector？ 在哪里定义的# -> 环状Buffer，具体见getbuffer
     //#
     //
     // 初始化的第一件事，就是先生成要用的
