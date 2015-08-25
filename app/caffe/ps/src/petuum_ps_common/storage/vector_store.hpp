@@ -8,9 +8,16 @@
 #include <petuum_ps_common/storage/abstract_store.hpp>
 #include <petuum_ps_common/storage/abstract_store_iterator.hpp>
 
+// æ­¤æ®µä¸ºæ–°æ·»åŠ ä»£ç è§£é‡Š
+// VectorStoreçš„åºåˆ—åŒ–æ“ä½œç›´æ¥memcpy
+// VectorStoreçš„ååºåˆ—åŒ–æ“ä½œç›´æ¥resizeå†memcpyå³å¯
+// æ˜¯å¦æ˜¯å› ä¸ºVectorçš„ç»“æ„å¯¼è‡´ååºåˆ—åŒ–å¦‚æ­¤ç®€æ´
+
+
+// æ­¤æ®µä¸ºä¹±ç 
 // #
-// ×Ü¶øÑÔÖ®
-// vector×÷Îª×îµ×²ãµÄ´æ´¢£¬ÊµÏÖÆğÀ´±ÈmapºÃÏñ¼òµ¥Ò»µã
+// ï¿½Ü¶ï¿½ï¿½ï¿½Ö®
+// vectorï¿½ï¿½Îªï¿½ï¿½×²ï¿½Ä´æ´¢ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mapï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 // #
 
 
@@ -58,20 +65,20 @@ template<typename V>
 VectorStore<V>::~VectorStore() { }
 
 
-// #¸´ÖÆ´´½¨ĞÂµÄ½á¹¹#
+// #ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ÂµÄ½á¹¹#
 template<typename V>
 VectorStore<V>::VectorStore(const VectorStore<V> &other):
     data_(other.data_) { }
 
-// #»ñÈ¡ÒıÓÃµØÖ·#
+// #ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ãµï¿½Ö·#
 template<typename V>
 VectorStore<V> & VectorStore<V>::operator = (const VectorStore<V> &other) {
   data_ = other.data_;
   return *this;
 }
 
-//#Ã»Ïëµ½ÕâÀïÊ¹ÓÃµÄÊÇmemsetÀ´×ö³õÊ¼»¯
-// ÔõÃ´Ê²Ã´¼¼Êõ¶¼ÓÃÄØ£¿
+//#Ã»ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½memsetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+// ï¿½ï¿½Ã´Ê²Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø£ï¿½
 // #
 template<typename V>
 void VectorStore<V>::Init(size_t capacity) {
@@ -104,7 +111,7 @@ void VectorStore<V>::ResetData(const void *data, size_t num_bytes) {
 }
 
 // #
-// °´ÕÕÁĞºÅÂëÀ´È¡Êı¾İ
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ğºï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½
 // #
 template<typename V>
 V VectorStore<V>::Get (int32_t col_id) const {
@@ -118,7 +125,7 @@ void VectorStore<V>::Inc(int32_t col_id, V delta) {
 }
 
 // #
-// Ã»Ïëµ½°¡vector»¹Ìá¹©ÕâÃ´µ×²ãµÄ½Ó¿Ú°¡
+// Ã»ï¿½ëµ½ï¿½ï¿½vectorï¿½ï¿½ï¿½á¹©ï¿½ï¿½Ã´ï¿½×²ï¿½Ä½Ó¿Ú°ï¿½
 // #
 template<typename V>
 V* VectorStore<V>::GetPtr(int32_t col_id) {
@@ -126,7 +133,7 @@ V* VectorStore<V>::GetPtr(int32_t col_id) {
 }
 
 // #
-// ÓëÉÏÒ»¸ö½Ó¿Ú²»Í¬µÄÊÇ£¬Õâ¸ö²»ÄÜĞŞ¸ÄÊÇconst£¬³£Á¿ÀàĞÍµÄ
+// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ó¿Ú²ï¿½Í¬ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş¸ï¿½ï¿½ï¿½constï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½
 // #
 
 template<typename V>
@@ -140,7 +147,7 @@ size_t VectorStore<V>::get_capacity() const {
 }
 
 // #
-// ¿½±´µ½ÁíÍâÒ»¸öÊı×é
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // #
 template<typename V>
 const void VectorStore<V>::CopyToVector(void *to) const {
@@ -149,7 +156,7 @@ const void VectorStore<V>::CopyToVector(void *to) const {
 }
 
 // #
-// ¿ÉÒÔ¿½±´µ½Ò»¸öÖ¸¶¨µÄÄÚ´æÖĞ£¬Õâ¸ö½Ó¿Ú²»´í
+// ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Ú²ï¿½ï¿½ï¿½
 // #
 
 template<typename V>
@@ -158,7 +165,7 @@ const void VectorStore<V>::CopyToMem(void *to) const {
 }
 
 // #
-// »ñÈ¡Õû¿éÊı¾İµÄÖ¸Õë
+// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½İµï¿½Ö¸ï¿½ï¿½
 // #
 template<typename V>
 const void *VectorStore<V>::GetDataPtr() const {
