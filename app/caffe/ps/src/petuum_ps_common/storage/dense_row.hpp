@@ -5,7 +5,7 @@
 #include <petuum_ps_common/storage/ns_count_calc.hpp>
 
 namespace petuum {
-
+// using 别名
 template<typename V>
 using DenseRowCore  = NumericStoreRow<VectorStore, V >;
 
