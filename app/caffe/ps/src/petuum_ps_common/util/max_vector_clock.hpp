@@ -3,6 +3,7 @@
 #include <glog/logging.h>
 #include <boost/unordered_map.hpp>
 #include <vector>
+// 感觉内容和vector_clock 是有很大部分重复的
 
 namespace petuum {
 

@@ -2,6 +2,8 @@
 
 namespace petuum {
 
+
+    // 感觉这个和vector_clock 实现的内容很相似，可能有一些区别，需要在由上而下的学习的过程中验证
 MaxVectorClock::MaxVectorClock() { }
 
 void MaxVectorClock::AddClock(int32_t id, int32_t clock) {
