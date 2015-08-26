@@ -4,8 +4,11 @@
 #include <petuum_ps/server/server_table.hpp>
 #include <petuum_ps/thread/context.hpp>
 
+// 看名字，就知道这个类是一个序列化相关的动作
 
 namespace petuum {
+
+
 
 // Provide sequential access to a byte string that's serialized oplogs.
 // Used to facilicate server reading OpLogs.
@@ -16,7 +19,23 @@ namespace petuum {
 // 2. int32_t : table id
 // 3. size_t : update_size for this table
 // 4. serialized table, details in oplog_partition
+// oplog分区
 
+/*
+ * 提供了顺序的访问序列化的oplogs的方法
+ * 主要是为了方便server对oplog的读
+ * oplogs 是按照元素来访问的
+ *
+ *
+ * -----------------------------
+ * oplog序列化的内存布局如下
+ * 1. num_tables
+ * 2. table id
+ * 3. update_size
+ * 4. 序列化的table
+ * */
+
+// 单例对象
 class SerializedOpLogReader : boost::noncopyable {
 public:
   // does not take ownership

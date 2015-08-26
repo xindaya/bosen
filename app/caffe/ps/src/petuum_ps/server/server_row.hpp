@@ -5,18 +5,14 @@
 #pragma once
 
 namespace petuum {
-//不允许拷贝，避免ownship的分散
 // Disallow copy to avoid shared ownership of row_data.
 // Allow move sematic for it to be stored in STL containers.
-    // 定义的也是一个一行的数据
 class ServerRow : public AbstractServerRow {
 public:
   ServerRow():
-  //这个dirty是要说明什么意思呢，是谁dirty？
       dirty_(false) { }
 
   explicit ServerRow(AbstractRow *row_data):
-  //要求必须显式初始化，不能隐式转换
       row_data_(row_data),
       num_clients_subscribed_(0),
       dirty_(false) { }
@@ -27,7 +23,6 @@ public:
   }
 
   ServerRow(ServerRow && other):
-  //拷贝之后，将被拷贝的数据清零
       row_data_(other.row_data_),
       num_clients_subscribed_(other.num_clients_subscribed_),
       dirty_(other.dirty_) {
@@ -40,8 +35,8 @@ public:
       const int32_t *column_ids,
       const void *update_batch,
       int32_t num_updates) {
-      // 直接调用包装的类的自带工具
-      // 这个更新难道不需要不脏的时候吗？
+
+
       // dirty = true
     row_data_->ApplyBatchIncUnsafe(column_ids, update_batch, num_updates);
     dirty_ = true;

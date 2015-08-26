@@ -22,9 +22,12 @@ public:
   void SerializeByServer(std::map<int32_t, void* > *bytes_by_server,
                          bool dense_serialize = false);
 private:
+  // 为什么这里使用的是一个unordered_map?
   std::unordered_map<int32_t,  AbstractRowOpLog*> oplog_map_;
   const int32_t table_id_;
   const size_t update_size_;
+
+  // comm_channel_idx 是一个int型的变量，到底是怎么用呢？
   const int32_t comm_channel_idx_;
 };
 
