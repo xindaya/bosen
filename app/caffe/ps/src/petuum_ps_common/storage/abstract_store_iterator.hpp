@@ -9,6 +9,7 @@
 //  这里应该要实现的东西，是对所有的存储的类型的一个操作的抽象
 //  get_key
 //  is_end
+// 定义了抽象迭代类，所谓Iterator就是不断更新迭代delta w
 // #
 namespace petuum {
 template<typename V>
