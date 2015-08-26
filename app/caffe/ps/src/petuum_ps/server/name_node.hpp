@@ -4,6 +4,8 @@
 #include <pthread.h>
 // Namenode 是将name_node_thread 做了二次封装
 // 封装上了瘾，还是封装效果就是好呢？
+// 为了提供更加简洁的接口吧
+
 namespace petuum {
 
 class NameNode {
