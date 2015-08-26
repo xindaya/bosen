@@ -2,9 +2,8 @@
 
 #include <petuum_ps/server/name_node_thread.hpp>
 #include <pthread.h>
-//#¶¨ÒåÁË¼¸¸ö»ù±¾µÄ½Ó¿Ú£¬Æô¶¯£¬¹Ø±Õ#
-//#¾ßÌå¶¨ÒåÔÚname_node_thread.hppÖĞ#
-//#Õâ¸öpthread_barrier_t ÊÇÒ»¸öÓÃÀ´Í¬²½Ïß³ÌµÄ¹¤¾ß#
+// Namenode æ˜¯å°†name_node_thread åšäº†äºŒæ¬¡å°è£…
+// å°è£…ä¸Šäº†ç˜¾ï¼Œè¿˜æ˜¯å°è£…æ•ˆæœå°±æ˜¯å¥½å‘¢ï¼Ÿ
 namespace petuum {
 
 class NameNode {
