@@ -3,6 +3,9 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/context.hpp"
+#include "../../include/caffe/blob.hpp"
+#include "../../include/caffe/syncedmem.hpp"
+#include "../../include/caffe/context.hpp"
 
 #include <petuum_ps_common/include/petuum_ps.hpp>
 #include <petuum_ps_common/include/table_gflags_declare.hpp>
@@ -10,6 +13,8 @@
 
 namespace caffe {
 
+    // reshape 是对n,c,h,w四个坐标变量做了修改
+    // 只是在内存大小不够的时候,会做reset工作
 template <typename Dtype>
 void Blob<Dtype>::Reshape(const int num, const int channels, const int height,
     const int width) {
@@ -22,6 +27,7 @@ void Blob<Dtype>::Reshape(const int num, const int channels, const int height,
   height_ = height;
   width_ = width;
   count_ = num_ * channels_ * height_ * width_;
+      // 内存不足,申请新空间,释放旧有的指针
   if (count_ > capacity_) {
     capacity_ = count_;
     data_.reset(new SyncedMemory(capacity_ * sizeof(Dtype)));
@@ -36,6 +42,7 @@ void Blob<Dtype>::Reshape(const int num, const int channels, const int height,
   }
 }
 
+    //不申请空间
 template <typename Dtype>
 void Blob<Dtype>::ReshapeWithoutAllocation(const int num, const int channels, 
     const int height, const int width) {
@@ -43,6 +50,7 @@ void Blob<Dtype>::ReshapeWithoutAllocation(const int num, const int channels,
   Reshape(num, channels, height, width);    
 }
 
+    // 按照给定的一个blob设置相应的n,c,h,w
 template <typename Dtype>
 void Blob<Dtype>::ReshapeLike(const Blob<Dtype>& other) {
   Reshape(other.num(), other.channels(), other.height(), other.width());
@@ -54,6 +62,8 @@ void Blob<Dtype>::ReshapeWithoutAllocationLike(const Blob<Dtype>& other) {
       other.width());
 }
 
+
+    // 初始化bosen的内容
 template <typename Dtype>
 void Blob<Dtype>::CreatePSTable() {
   CHECK_GE(global_id_, 0);
@@ -94,6 +104,8 @@ Blob<Dtype>::Blob(const int num, const int channels, const int height,
   }
 }
 
+
+    // 对syncedmem的操作的包装
 template <typename Dtype>
 const Dtype* Blob<Dtype>::cpu_data() const {
   //if (blob_mode_ == BlobProto_BlobMode_GLOBAL 
@@ -192,6 +204,7 @@ void Blob<Dtype>::Update() {
   case SyncedMemory::SYNCED:
 #ifndef CPU_ONLY
     // perform computation on GPU
+    // a x * y
     caffe_gpu_axpy<Dtype>(count_, Dtype(-1),
         static_cast<const Dtype*>(diff_->gpu_data()),
         static_cast<Dtype*>(data_->mutable_gpu_data()));

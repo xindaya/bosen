@@ -52,7 +52,7 @@ inline void SyncedMemory::to_gpu() {
 
     // 整个caffe的内存的申请工作的起点,lazily,当用到的时候才会真正的做内存申请的工作
     // syncedmem初始化的时候会将HEAD赋值为UNINITIALIZED
-    
+
     CUDA_CHECK(cudaMalloc(&gpu_ptr_, size_));
     caffe_gpu_memset(size_, 0, gpu_ptr_);
     head_ = HEAD_AT_GPU;
