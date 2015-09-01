@@ -10,6 +10,8 @@ namespace caffe {
 // define factories for layers with multiple computational engines.
 
 // Get convolution layer according to engine.
+
+    // 工厂方法,将所有的layer放到这里,然后根据参数不同,返回不同的值
 template <typename Dtype>
 ConvolutionLayer<Dtype>* GetConvolutionLayer(const string& name,
     const LayerParameter& param) {
